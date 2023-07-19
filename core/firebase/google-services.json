@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "521292747400",
+    "project_id": "movie-app-aa22a",
+    "storage_bucket": "movie-app-aa22a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521292747400:android:452096b930160e6144053d",
+        "android_client_info": {
+          "package_name": "com.tafreshiali.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521292747400-5u358f3vv5kqbgrdk14p0ean3kr0gdns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB46cyzopx0AMywGMc39pU6sfay7dinh9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521292747400-5u358f3vv5kqbgrdk14p0ean3kr0gdns.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

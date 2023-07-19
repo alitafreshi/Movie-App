@@ -1,0 +1,3 @@
+package com.tafreshiali.app_state_manager
+
+interface BaseUiEffects
