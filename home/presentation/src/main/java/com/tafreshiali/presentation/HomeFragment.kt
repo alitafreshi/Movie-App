@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -14,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.key.Key.Companion.I
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.style.TextAlign
 import androidx.fragment.app.Fragment
@@ -38,9 +42,14 @@ class HomeFragment : Fragment() {
                 val x = homeViewModel.getCurrentViewStateOrNew()
             }
 
-            BaseScreenContainer(topAppBarNavigationIcon = {
-                Icon(painter =, contentDescription =)
-            }, topAppBarActions =) {
+            BaseScreenContainer(
+                topAppBarNavigationIcon = {
+                    Icon(imageVector = Icons.Rounded.Home, contentDescription = "Home")
+                },
+                topAppBarActions = {
+                    Icon(imageVector = Icons.Rounded.Menu, contentDescription = "Menu")
+                }
+            ) {
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center

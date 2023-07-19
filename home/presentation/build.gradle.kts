@@ -76,6 +76,9 @@ dependencies {
     debugImplementation(Compose.compose_ui_manifest)
     debugImplementation(Compose.compose_ui_tooling)
 
+    //COIL
+    implementation(Coil.coil)
+
     //Hilt - CORE
     implementation(Hilt.hiltAndroid)
     kapt(Hilt.hiltCompiler)
