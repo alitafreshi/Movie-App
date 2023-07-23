@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -16,14 +17,15 @@ import kotlinx.coroutines.launch
 abstract class BaseViewModel<ViewState, Events, UiEffects> :
     ViewModel() {
 
-    private val initialViewState : ViewState by lazy { initNewViewState() }
+    private val initialViewState: ViewState by lazy { initNewViewState() }
 
     private val _viewState: MutableStateFlow<ViewState> = MutableStateFlow(initialViewState)
+    val viewState = _viewState.asStateFlow()
 
     private val _uiEffects = MutableSharedFlow<UiEffects>()
     private val uiEffects = _uiEffects.asSharedFlow()
 
-    fun getCurrentViewStateOrNew(): ViewState = _viewState.value ?: initNewViewState()
+    protected fun getCurrentViewStateOrNew(): ViewState = viewState.value
 
     fun setViewState(viewState: ViewState) {
         _viewState.value = viewState

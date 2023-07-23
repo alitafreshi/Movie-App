@@ -3,28 +3,15 @@ package com.tafreshiali.presentation
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.key.Key.Companion.I
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.text.style.TextAlign
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import com.tafreshiali.components.BaseScreenContainer
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalFoundationApi
 @ExperimentalMaterial3Api
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -37,27 +24,10 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ) = ComposeView(context = requireContext()).apply {
         setContent {
-
-            LaunchedEffect(key1 = true) {
-                val x = homeViewModel.getCurrentViewStateOrNew()
-            }
-
-            BaseScreenContainer(
-                topAppBarNavigationIcon = {
-                    Icon(imageVector = Icons.Rounded.Home, contentDescription = "Home")
-                },
-                topAppBarActions = {
-                    Icon(imageVector = Icons.Rounded.Menu, contentDescription = "Menu")
-                }
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center
-                ) {
-
-
-                }
-            }
+            HomeScreen(
+                homeViewState = homeViewModel.viewState.collectAsState().value,
+                homeEvents = homeViewModel::onTriggerEvent
+            )
         }
     }
 }

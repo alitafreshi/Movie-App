@@ -1,5 +1,6 @@
 package com.tafreshiali.presentation.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,7 +16,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -23,6 +26,7 @@ import androidx.constraintlayout.compose.Dimension
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
+import com.tafreshiali.presentation.HomeConstance
 
 @Composable
 fun BannerComponent(modifier: Modifier = Modifier, bannerUrl: String, bannerTitle: String) {
@@ -30,7 +34,7 @@ fun BannerComponent(modifier: Modifier = Modifier, bannerUrl: String, bannerTitl
     ConstraintLayout(
         modifier = modifier
             .fillMaxWidth()
-            .height(120.dp)
+            .height(150.dp)
 
     ) {
         val (bannerCloseButton, bannerContainer, bannerDescription, bannerButton) = createRefs()
@@ -90,29 +94,31 @@ fun BannerComponent(modifier: Modifier = Modifier, bannerUrl: String, bannerTitl
 
 @Composable
 private fun BannerContainer(modifier: Modifier = Modifier, bannerUrl: String) {
-
-    Surface(modifier = modifier, shape = MaterialTheme.shapes.medium, color = Color.LightGray) {
-        SubcomposeAsyncImage(
-            model = bannerUrl,
-            contentDescription = "Home Banner",
-            modifier = Modifier.fillMaxSize()
-        ) {
-            when (painter.state) {
-                AsyncImagePainter.State.Empty -> {
-                    /*TODO("Make The Banner Gone")*/
-                }
-                is AsyncImagePainter.State.Error -> {
-/*
-                    TODO("Make Them Banner Gone")
-*/
-                }
-                is AsyncImagePainter.State.Loading -> {
-                    /*TODO("Shimmer Effect")*/
-                }
-                is AsyncImagePainter.State.Success -> SubcomposeAsyncImageContent()
+    SubcomposeAsyncImage(
+        model = "${HomeConstance.IMAGE_BASE_URL}/original$bannerUrl",
+        contentScale = ContentScale.Crop,
+        contentDescription = "Home Banner",
+        modifier = Modifier
+            .fillMaxSize()
+            .clip(shape = MaterialTheme.shapes.large)
+    ) {
+        when (painter.state) {
+            AsyncImagePainter.State.Empty -> {
+                Log.d("BANNER", "Banner State:Empty ")
             }
+
+            is AsyncImagePainter.State.Error -> {
+                Log.d("BANNER", "Banner State:Error ")
+            }
+
+            is AsyncImagePainter.State.Loading -> {
+                Log.d("BANNER", "Banner State:Loading ")
+            }
+
+            is AsyncImagePainter.State.Success -> SubcomposeAsyncImageContent()
         }
     }
+
 }
 
 

@@ -1,5 +1,6 @@
 package com.tafreshiali.components
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -15,7 +16,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 fun BaseScreenContainer(
     topAppBarNavigationIcon: @Composable () -> Unit = {},
     topAppBarActions: @Composable RowScope.() -> Unit = {},
-    screenContent: @Composable (modifier: Modifier) -> Unit
+    screenContent: @Composable (contentPaddingValues: PaddingValues) -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
@@ -29,6 +30,6 @@ fun BaseScreenContainer(
             )
         }
     ) { paddingValues ->
-        screenContent(modifier = Modifier.padding(paddingValues = paddingValues))
+        screenContent(contentPaddingValues = paddingValues)
     }
 }

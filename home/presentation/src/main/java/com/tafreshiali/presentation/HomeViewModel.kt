@@ -30,12 +30,17 @@ class HomeViewModel @Inject constructor(private val getTrendingMoviesUseCase: Ge
     private fun getTrendingMovies() {
         getTrendingMoviesUseCase().onEach { dataState ->
             when (dataState) {
-                is DataState.Data -> setViewState(
-                    viewState = getCurrentViewStateOrNew().copy(
-                        trendingMovies = dataState.data ?: emptyList(),
-                        loadingState = LoadingState.Idle
-                    )
-                )
+                is DataState.Data -> {
+                    dataState.data?.let { result ->
+                        setViewState(
+                            viewState = getCurrentViewStateOrNew().copy(
+                                bannerUrl = result.first().posterPath,
+                                trendingMovies = result,
+                                loadingState = LoadingState.Idle
+                            )
+                        )
+                    }
+                }
 
                 is DataState.Error -> setViewState(
                     viewState = getCurrentViewStateOrNew().copy(
