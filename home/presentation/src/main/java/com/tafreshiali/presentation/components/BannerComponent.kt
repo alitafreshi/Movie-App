@@ -95,7 +95,7 @@ fun BannerComponent(modifier: Modifier = Modifier, bannerUrl: String, bannerTitl
 @Composable
 private fun BannerContainer(modifier: Modifier = Modifier, bannerUrl: String) {
     SubcomposeAsyncImage(
-        model = "${HomeConstance.IMAGE_BASE_URL}/original$bannerUrl",
+        model = "${HomeConstance.IMAGE_BASE_URL}/w500$bannerUrl",
         contentScale = ContentScale.Crop,
         contentDescription = "Home Banner",
         modifier = Modifier

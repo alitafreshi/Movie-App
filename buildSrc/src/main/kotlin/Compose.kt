@@ -9,6 +9,7 @@ object Compose {
     const val compose_ui_tooling = "androidx.compose.ui:ui-tooling"
     const val compose_ui_graphics = "androidx.compose.ui:ui-graphics"
     const val compose_ui_manifest = "androidx.compose.ui:ui-test-manifest"
+    const val compose_ui_util = "androidx.compose.ui:ui-util"
 
     private const val compose_activity_version = "1.7.2"
     const val compose_activity = "androidx.activity:activity-compose:$compose_activity_version"

@@ -1,7 +1,7 @@
 package com.tafreshiali.presentation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
@@ -10,6 +10,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.tafreshiali.components.BaseScreenContainer
 import com.tafreshiali.presentation.components.BannerComponent
@@ -32,7 +33,8 @@ fun HomeScreen(
             Icon(imageVector = Icons.Rounded.Menu, contentDescription = "Menu")
         }
     ) { paddingValues ->
-        LazyColumn(modifier = modifier.padding(horizontal = 15.dp), contentPadding = paddingValues) {
+
+        LazyColumn(modifier = modifier, contentPadding = paddingValues) {
             item {
                 BannerComponent(
                     bannerUrl = homeViewState.bannerUrl,
@@ -43,8 +45,11 @@ fun HomeScreen(
                 HomeSectionHeaderComponent(key = "Popular", value = "view all")
             }
 
+
             item {
-                HomeImageSliderComponent(imageUrls = homeViewState.trendingMovies)
+                HomeImageSliderComponent(
+                    imageUrls = homeViewState.trendingMovies
+                )
             }
         }
     }

@@ -73,6 +73,7 @@ dependencies {
     implementation(Compose.compose_constraint_layout)
     implementation(Compose.compose_viewModel)
     implementation(Compose.compose_view_binding)
+    implementation(Compose.compose_ui_util)
     debugImplementation(Compose.compose_ui_manifest)
     debugImplementation(Compose.compose_ui_tooling)
 
