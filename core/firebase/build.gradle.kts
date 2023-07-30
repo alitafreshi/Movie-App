@@ -2,6 +2,9 @@ plugins {
     id(Plugins.androidLibrary)
     kotlin(KotlinPlugins.android)
     id(Plugins.googleGmsPlugin)
+    id(Plugins.hilt)
+    kotlin(KotlinPlugins.kapt)
+
 }
 
 android {
@@ -37,6 +40,7 @@ dependencies {
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.lifecycleRuntimeKtx)
     implementation(AndroidX.androidxAnnotation)
+    implementation("androidx.lifecycle:lifecycle-service:2.6.1")
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.junitTestExt)
     androidTestImplementation(Junit.junitTestExtKtx)
@@ -44,4 +48,10 @@ dependencies {
     //FCM
     api(Firbase.cloud_messaging)
 
+    //Hilt - CORE
+    implementation(Hilt.hiltAndroid)
+    kapt(Hilt.hiltCompiler)
+}
+kapt {
+    correctErrorTypes = true
 }
