@@ -1,7 +1,8 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugins.javaLibrary)
-    id(KotlinPlugins.kotlin)
-    kotlin(KotlinPlugins.kapt)
+    alias(libs.plugins.java.library.plugin)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 java {
@@ -10,9 +11,9 @@ java {
 }
 
 dependencies {
-    implementation(Ktor.ktor_client_gson)
-    implementation(AndroidX.androidxAnnotation)
-    implementation(Hilt.javaInject)
+    implementation(libs.ktor.serialization.gson)
+    implementation(libs.androidx.annotation)
+    implementation(libs.java.inject)
 
     //DATA STATE MODULE
     implementation(project(Modules.dataState))

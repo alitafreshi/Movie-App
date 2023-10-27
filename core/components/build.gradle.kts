@@ -45,7 +45,6 @@ android {
 dependencies {
 
     implementation(AndroidX.coreKtx)
-    implementation(AndroidX.lifecycleRuntimeKtx)
     implementation(AndroidX.androidxAnnotation)
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.junitTestExt)
@@ -56,14 +55,11 @@ dependencies {
     implementation(platform(Compose.composeBoom))
     androidTestImplementation(Compose.composeBoom)
 
-    implementation(Compose.compose_activity)
     implementation(Compose.compose_material_3)
     implementation(Compose.compose_preview)
     implementation(Compose.compose_ui_tooling)
     implementation(Compose.compose_ui_graphics)
     implementation(Compose.compose_compiler)
-    implementation(Compose.compose_constraint_layout)
-    implementation(Compose.compose_viewModel)
     implementation(Compose.compose_view_binding)
     debugImplementation(Compose.compose_ui_manifest)
     debugImplementation(Compose.compose_ui_tooling)

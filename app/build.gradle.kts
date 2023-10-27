@@ -1,25 +1,26 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugins.androidApplication)
-    kotlin(KotlinPlugins.android)
-    kotlin(KotlinPlugins.kapt)
-    kotlin(KotlinPlugins.serialization)
-    id(Plugins.hilt)
-    id(Plugins.safeArgsNavigationPlugin)
-    id(KotlinPlugins.parcelize)
-    id(Plugins.googleKspPlugin) version (Plugins.googleKspPluginVersion)
+    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.org.jetbrains.kotlin.serialization.plugin)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.jetpack.navigation.safe.args.plugin)
+    alias(libs.plugins.org.jetbrains.koltin.parcelize.plugin)
+    alias(libs.plugins.kotlin.ksp.plugin)
 }
 
 android {
     namespace = Application.appId
-    compileSdk = Application.compileSdk
+    compileSdk = libs.versions.apllication.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = Application.appId
-        minSdk = Application.minSdk
+        minSdk = libs.versions.application.minsdk.get().toInt()
         multiDexEnabled = true
-        targetSdk = Application.targetSdk
-        versionCode = Application.versionCode
-        versionName = Application.versionName
+        targetSdk = libs.versions.apllication.targetsdk.get().toInt()
+        versionCode = libs.versions.appication.version.code.get().toInt()
+        versionName = libs.versions.application.version.name.toString()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -53,7 +54,7 @@ android {
         viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Compose.compose_compiler_version
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     packaging {
         resources {
@@ -63,14 +64,14 @@ android {
 }
 
 dependencies {
-
-    implementation(AndroidX.coreKtx)
-    implementation(platform(Kotlin.kotlin_bom))
-    implementation(AndroidX.lifecycleRuntimeKtx)
-    implementation(AndroidX.livedateLifcycleRuntime)
-    implementation(AndroidX.appCompatActivity)
-    implementation(AndroidX.activityKtx)
-    implementation(AndroidX.fragmentKtx)
+    //Androidx
+    implementation(libs.androix.core.ktx)
+    implementation(platform(libs.kotlin.bom))
+    implementation(libs.androix.lifecycle.runtime.ktx)
+    implementation(libs.androix.livedata.ktx)
+    implementation(libs.androix.appcompat)
+    implementation(libs.androix.activity.ktx)
+    implementation(libs.androidx.fragment.ktx)
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.junitTestExt)
     androidTestImplementation(Junit.junitTestExtKtx)
@@ -78,35 +79,24 @@ dependencies {
 
 
     //COMPOSE
-    implementation(platform(Compose.composeBoom))
-    androidTestImplementation(Compose.composeBoom)
-
-    implementation(Compose.compose_activity)
-    implementation(Compose.compose_material_3)
-    implementation(Compose.compose_preview)
-    implementation(Compose.compose_ui_tooling)
-    implementation(Compose.compose_ui_graphics)
-    implementation(Compose.compose_compiler)
-    implementation(Compose.compose_constraint_layout)
-    implementation(Compose.compose_viewModel)
-    implementation(Compose.compose_view_binding)
-    debugImplementation(Compose.compose_ui_manifest)
-    debugImplementation(Compose.compose_ui_tooling)
+    implementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
+    debugImplementation(libs.compose.ui.manifest)
+    debugImplementation(libs.compose.ui.tooling)
 
     //LEAK CANARY
-    debugImplementation(LeakCanary.leakCanary)
+    debugImplementation(libs.leakcanary)
 
     //Hilt - CORE
-    implementation(Hilt.hiltAndroid)
-    kapt(Hilt.hiltCompiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     //Hilt - NAVIGATION
-    implementation(Hilt.hiltNavigation)
-    implementation(Hilt.hiltFragmentsNavigation)
+    implementation(libs.bundles.hilt.navigation)
 
     //JETPACK-NAVIGATION
-    implementation(Navigation.navigation_fragments)
-    implementation(Navigation.navigation_kotlin_ui)
+    implementation(libs.bundles.jetpack.navigation)
 
     //FIREBASE MODULE
     implementation(project(Modules.firebase))
