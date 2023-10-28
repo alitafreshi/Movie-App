@@ -1,7 +1,7 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugins.javaLibrary)
-    id(KotlinPlugins.kotlin)
-    kotlin(KotlinPlugins.kapt)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 java {
@@ -10,10 +10,10 @@ java {
 }
 
 dependencies {
-    implementation(Kotlin.kotlinCoroutines)
+    implementation(libs.kotlin.coroutines)
     //hilt core
-    implementation(Hilt.hiltCore)
-    kapt(Hilt.hiltCompiler)
+    implementation(libs.hilt.core)
+    kapt(libs.hilt.compiler)
 }
 kapt {
     correctErrorTypes = true

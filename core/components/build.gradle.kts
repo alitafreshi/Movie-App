@@ -1,14 +1,15 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugins.androidLibrary)
-    kotlin(KotlinPlugins.android)
+    alias(libs.plugins.com.android.library)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
 }
 
 android {
     namespace = NameSpaces.coreComponents
-    compileSdk = Application.compileSdk
+    compileSdk = libs.versions.apllication.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = Application.minSdk
+        minSdk = libs.versions.application.minsdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -33,7 +34,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Compose.compose_compiler_version
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     packaging {
         resources {
@@ -44,28 +45,23 @@ android {
 
 dependencies {
 
-    implementation(AndroidX.coreKtx)
-    implementation(AndroidX.androidxAnnotation)
+    implementation(libs.androix.core.ktx)
+    implementation(libs.androidx.annotation)
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.junitTestExt)
     androidTestImplementation(Junit.junitTestExtKtx)
     androidTestImplementation(Espresso.espresso)
 
     //COMPOSE
-    implementation(platform(Compose.composeBoom))
-    androidTestImplementation(Compose.composeBoom)
+    implementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
 
-    implementation(Compose.compose_material_3)
-    implementation(Compose.compose_preview)
-    implementation(Compose.compose_ui_tooling)
-    implementation(Compose.compose_ui_graphics)
-    implementation(Compose.compose_compiler)
-    implementation(Compose.compose_view_binding)
-    debugImplementation(Compose.compose_ui_manifest)
-    debugImplementation(Compose.compose_ui_tooling)
+    implementation(libs.bundles.compose)
+    debugImplementation(libs.compose.ui.manifest)
+    debugImplementation(libs.compose.ui.tooling)
 
     //JETPACK-NAVIGATION
-    implementation(Navigation.navigation_kotlin_ui)
+    implementation(libs.jetpack.navigation.ui.ktx)
 
     //APP STATE MANGER MODULE
     implementation(project(Modules.appStatemanger))

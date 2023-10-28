@@ -1,6 +1,7 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugins.javaLibrary)
-    id(KotlinPlugins.kotlin)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 java {
@@ -9,10 +10,10 @@ java {
 }
 dependencies {
     //kotlinCoroutines
-    implementation(Kotlin.kotlinCoroutines)
+    implementation(libs.kotlin.coroutines)
 
     //javax
-    implementation(Hilt.javaInject)
+    implementation(libs.java.inject)
 
     //coroutines dispatchers
     implementation(project(Modules.coroutinesDispatchers))

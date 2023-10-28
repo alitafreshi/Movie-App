@@ -1,10 +1,10 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugins.androidLibrary)
-    kotlin(KotlinPlugins.android)
-    id(Plugins.googleGmsPlugin)
-    id(Plugins.hilt)
-    kotlin(KotlinPlugins.kapt)
-
+    alias(libs.plugins.com.android.library)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 android {
@@ -37,20 +37,20 @@ android {
 
 dependencies {
 
-    implementation(AndroidX.coreKtx)
-    implementation(AndroidX.lifecycleRuntimeKtx)
-    implementation(AndroidX.androidxAnnotation)
-    implementation("androidx.lifecycle:lifecycle-service:2.6.1")
+    implementation(libs.androix.core.ktx)
+    implementation(libs.androix.lifecycle.runtime.ktx)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.lifecycle.services)
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.junitTestExt)
     androidTestImplementation(Junit.junitTestExtKtx)
     androidTestImplementation(Espresso.espresso)
     //FCM
-    api(Firbase.cloud_messaging)
+    api(libs.firebase.cloud.messaging.ktx)
 
     //Hilt - CORE
-    implementation(Hilt.hiltAndroid)
-    kapt(Hilt.hiltCompiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 }
 kapt {
     correctErrorTypes = true

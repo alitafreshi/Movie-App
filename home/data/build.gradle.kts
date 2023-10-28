@@ -1,7 +1,7 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugins.javaLibrary)
-    id(KotlinPlugins.kotlin)
-    kotlin(KotlinPlugins.kapt)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 java {
@@ -11,15 +11,15 @@ java {
 
 dependencies {
 
-    implementation(AndroidX.androidxAnnotation)
-    implementation(Hilt.javaInject)
+    implementation(libs.androidx.annotation)
+    implementation(libs.java.inject)
 
     //kotlinCoroutines
-    implementation(Kotlin.kotlinCoroutines)
+    implementation(libs.kotlin.coroutines)
 
     //ktor client
-    implementation(Ktor.ktor_client_core)
-    implementation(Ktor.ktor_client_gson)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.serialization.gson)
 
     //domain module
     implementation(project(Modules.homeDomain))
