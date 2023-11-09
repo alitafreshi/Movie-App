@@ -3,21 +3,16 @@
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
-plugins {
-    alias(libs.plugins.com.android.application) apply false
-    alias(libs.plugins.com.android.library) apply false
-    alias(libs.plugins.org.jetbrains.kotlin.android) apply false
-    alias(libs.plugins.kotlin.jvm) apply false
-    alias(libs.plugins.dagger.hilt.android) apply false
-    alias(libs.plugins.org.jetbrains.kotlin.serialization.plugin) apply false
-    alias(libs.plugins.org.jetbrains.koltin.parcelize.plugin) apply false
-    alias(libs.plugins.org.jetbrains.kotlin.kapt) apply false
-    alias(libs.plugins.jetpack.navigation.safe.args.plugin) apply false
-    alias(libs.plugins.google.services) apply false
-}
-
-
 buildscript {
+
+    repositories {
+        maven(url = "https://jitpack.io")
+        google()
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
     dependencies {
         classpath(libs.android.gradle.plugin)
         classpath(libs.kotlin.gradle.plugin)
@@ -25,5 +20,15 @@ buildscript {
         classpath(libs.kotlin.serilization.gradle.plugin)
         classpath(libs.jetpack.navigation.safe.args.gradle.plugin)
         classpath(libs.google.services.gradle.plugin)
+    }
+}
+
+allprojects {
+    repositories {
+        maven(url = "https://jitpack.io")
+        google()
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
     }
 }

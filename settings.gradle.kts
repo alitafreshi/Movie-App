@@ -1,4 +1,4 @@
-pluginManagement {
+/*pluginManagement {
     repositories {
         maven(url = "https://jitpack.io")
         google()
@@ -16,7 +16,7 @@ dependencyResolutionManagement {
         mavenCentral()
         gradlePluginPortal()
     }
-}
+}*/
 
 rootProject.name = "Moview App"
 include(":app")

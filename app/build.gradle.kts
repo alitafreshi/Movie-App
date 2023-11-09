@@ -1,13 +1,12 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.org.jetbrains.kotlin.kapt)
-    alias(libs.plugins.org.jetbrains.kotlin.serialization.plugin)
-    alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.jetpack.navigation.safe.args.plugin)
-    alias(libs.plugins.org.jetbrains.koltin.parcelize.plugin)
-    alias(libs.plugins.kotlin.ksp.plugin)
+    id(libs.plugins.com.android.application.get().pluginId)
+    id(libs.plugins.org.jetbrains.kotlin.android.get().pluginId)
+    id(libs.plugins.org.jetbrains.kotlin.kapt.get().pluginId)
+    id(libs.plugins.org.jetbrains.kotlin.serialization.plugin.get().pluginId)
+    id(libs.plugins.dagger.hilt.android.get().pluginId)
+    id(libs.plugins.jetpack.navigation.safe.args.plugin.get().pluginId)
+    id(libs.plugins.org.jetbrains.koltin.parcelize.plugin.get().pluginId)
 }
 
 android {

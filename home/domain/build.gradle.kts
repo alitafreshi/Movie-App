@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    id(libs.plugins.kotlin.jvm.get().pluginId)
+    id(libs.plugins.org.jetbrains.kotlin.kapt.get().pluginId)
 }
 
 java {
