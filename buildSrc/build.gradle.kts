@@ -15,6 +15,8 @@ plugins {
 dependencies {
     implementation(libs.kotlin.gradle.plugin)
     implementation(libs.android.gradle.plugin)
+    //https://github.com/google/dagger/issues/3068#issuecomment-1595158810
+    implementation(libs.hilt.gradle.plugin)
 }
 
 val compileKotlin: KotlinCompile by tasks

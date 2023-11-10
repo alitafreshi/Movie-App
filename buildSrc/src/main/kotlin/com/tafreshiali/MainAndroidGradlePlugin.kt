@@ -1,13 +1,12 @@
-import Plugins.kotlinAndroid
+package com.tafreshiali
+
 import com.android.build.gradle.LibraryExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.libsDirectory
 
 class MainAndroidGradlePlugin : Plugin<Project> {
 
@@ -22,9 +21,12 @@ class MainAndroidGradlePlugin : Plugin<Project> {
                 "com.android.library",
                 "org.jetbrains.kotlin.android",
                 "org.jetbrains.kotlin.kapt",
-                "com.google.dagger.hilt.android"
+                "dagger.hilt.android",
+                "jetpack.navigation.safe.args-plugin",
+                "org.jetbrains.koltin.parcelize.plugin"
             )
         )
+
     }
 
     private fun setProjectConfig(project: Project) {
@@ -34,6 +36,16 @@ class MainAndroidGradlePlugin : Plugin<Project> {
                 minSdk = project.getVersionProperty("application.minsdk").toInt()
                 testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 consumerProguardFiles("consumer-rules.pro")
+            }
+
+            buildTypes {
+                release {
+                    isMinifyEnabled = false
+                    proguardFiles(
+                        getDefaultProguardFile("proguard-android-optimize.txt"),
+                        "proguard-rules.pro"
+                    )
+                }
             }
 
             compileOptions {
@@ -47,7 +59,7 @@ class MainAndroidGradlePlugin : Plugin<Project> {
             }
             composeOptions {
                 kotlinCompilerExtensionVersion =
-                    project.getVersionProperty("versions.compose.compiler")
+                    project.getVersionProperty("compose.compiler")
 
             }
             packaging {
@@ -58,9 +70,6 @@ class MainAndroidGradlePlugin : Plugin<Project> {
 
         }
     }
-
-
-
 
 
     private fun Project.android(): LibraryExtension =
@@ -87,6 +96,7 @@ class MainAndroidGradlePlugin : Plugin<Project> {
         project.apply {
             availdablePluginsList.forEach {
                 versionCatalog().findPlugin(it).ifPresent { vaildablPlugin ->
+                    println(" fuck plugin ${vaildablPlugin.get().pluginId}")
                     plugin(vaildablPlugin.get().pluginId)
                 }
             }
