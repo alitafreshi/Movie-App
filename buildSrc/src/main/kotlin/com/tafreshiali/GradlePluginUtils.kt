@@ -4,6 +4,8 @@ import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
 fun Project.android(): LibraryExtension =
@@ -16,15 +18,15 @@ fun Project.versionCatalog(): VersionCatalog =
 
 fun addNecessaryLibraries(project: Project, dependecyName: String) {
     project.versionCatalog().findLibrary(dependecyName).ifPresent {
-        project.apply {
-            //TODO CHECK THIS
+        project.dependencies {
+            //https://stackoverflow.com/a/63068879
+            //https://youtu.be/Z97sl7MrrzE?si=2iLJJQlqVFjZCTUe
         }
     }
 
 }
 
 fun Project.addNecessaryPlugins(pluginsList: List<String>) {
-
     val availdablePluginsList =
         versionCatalog().pluginAliases.filter { it in pluginsList.map { pluginName -> pluginName } }
     project.apply {
