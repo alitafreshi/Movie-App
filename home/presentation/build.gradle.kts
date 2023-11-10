@@ -1,6 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.tafreshiali.common")
+    id("android-module-plugins")
+    id("android-module-project-config")
 }
 
 android {
