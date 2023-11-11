@@ -1,23 +1,3 @@
-/*pluginManagement {
-    repositories {
-        maven(url = "https://jitpack.io")
-        google()
-        mavenLocal()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        maven(url = "https://jitpack.io")
-        google()
-        mavenLocal()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}*/
-
 rootProject.name = "Moview App"
 include(":app")
 include(":core")

@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("android-module-plugins")
-    id("android-module-project-config")
+    id(libs.plugins.android.module.plugins.get().pluginId)
+    id(libs.plugins.android.module.project.config.get().pluginId)
 }
 
 android {

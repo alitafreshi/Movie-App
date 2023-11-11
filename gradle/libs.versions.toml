@@ -29,7 +29,7 @@ compose-compiler = "1.4.6"
 compose-viewbinding = "1.4.3"
 coil = "2.4.0"
 firebase-bom = "32.5.0"
-firebase-crashlytics-plugin="2.9.9"
+firebase-crashlytics-plugin = "2.9.9"
 java-inject = "1"
 kotlin-coroutines = "1.7.2"
 ktor = "2.3.2"
@@ -134,3 +134,7 @@ kotlin-ksp-plugin = { id = "com.google.devtools.ksp", version.ref = "kotlin-ksp-
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-gradle-plugin" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics-plugin" }
+
+# Local Plugins
+android-module-plugins = { id = "android-module-plugins", version = "unspecified" }
+android-module-project-config = { id = "android-module-project-config", version = "unspecified" }
