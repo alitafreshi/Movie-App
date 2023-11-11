@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.google.services)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    //alias(libs.plugins.firebase.crashlytics)
 }
 
 android {
@@ -45,8 +46,16 @@ dependencies {
     androidTestImplementation(Junit.junitTestExt)
     androidTestImplementation(Junit.junitTestExtKtx)
     androidTestImplementation(Espresso.espresso)
+
     //FCM
+    api(platform(libs.firebase.bom))
     api(libs.firebase.cloud.messaging.ktx)
+    // api(libs.firebase.crashlytics.ktx)
+    //api(libs.firebase.analytics.ktx)
+
+    //glide
+    api(libs.glide)
+    kapt(libs.glide.compiler)
 
     //Hilt - CORE
     implementation(libs.hilt.android)

@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.kapt) apply false
     alias(libs.plugins.jetpack.navigation.safe.args.plugin) apply false
     alias(libs.plugins.google.services) apply false
+    //alias(libs.plugins.firebase.crashlytics) apply false
 }
 
 

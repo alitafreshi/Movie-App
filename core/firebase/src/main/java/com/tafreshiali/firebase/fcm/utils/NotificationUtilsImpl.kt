@@ -16,6 +16,7 @@ import android.text.style.LocaleSpan
 import android.text.style.StyleSpan
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.bumptech.glide.Glide
 import com.tafreshiali.firebase.R
 import com.tafreshiali.firebase.fcm.model.NotificationMessage
 import com.tafreshiali.firebase.fcm.utils.NotificationType.ACTION_CALL
@@ -172,6 +173,21 @@ class NotificationUtilsImpl @Inject constructor(
             .setSound(uri)
             .setVibrate(longArrayOf(724, 724, 724))
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+
+        val style: NotificationCompat.Style
+
+        val imageUrl = notificationMessage.imageUrl
+
+        if (!imageUrl.isNullOrEmpty()) {
+            style = NotificationCompat.BigPictureStyle().setBigContentTitle(rtlTitle)
+            val image = Glide.with(context).asBitmap().load(imageUrl).submit()
+            style.bigPicture(image.get())
+            Glide.with(context).clear(image)
+        } else {
+            style = NotificationCompat.BigTextStyle().setBigContentTitle(rtlTitle)
+        }
+
+        builder.setStyle(style)
 
         if (Build.VERSION.SDK_INT <= 25) {
             builder.priority = Notification.PRIORITY_MAX

@@ -11,7 +11,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AppViewModel @Inject constructor() : BaseViewModel<AppViewState, AppEvents, Nothing>() {
     fun init() {
-        FirebaseMessaging.getInstance().subscribeToTopic(Topics.TOPIC_A)
+        FirebaseMessaging.getInstance().subscribeToTopic(Topics.TOPIC_B)
+        FirebaseMessaging.getInstance().subscribeToTopic(Topics.TOPIC_ALL_USERS)
         onTriggerEvent(event = AppEvents.InitAppFcm)
     }
 
