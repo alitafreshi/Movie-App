@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(libs.plugins.kotlin.jvm.get().pluginId)
-    id(libs.plugins.org.jetbrains.kotlin.kapt.get().pluginId)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 java {
@@ -22,9 +22,9 @@ dependencies {
     implementation(libs.ktor.serialization.gson)
 
     //domain module
-    implementation(project(Modules.homeDomain))
+    implementation(project(":home:domain"))
 
     //network module
-    implementation(project(Modules.network))
+    implementation(project(":core:network"))
 
 }

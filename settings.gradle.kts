@@ -1,4 +1,26 @@
-rootProject.name = "Moview App"
+pluginManagement {
+    includeBuild("build-logic")
+    repositories {
+        maven(url = "https://jitpack.io")
+        google()
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven(url = "https://jitpack.io")
+        google()
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+rootProject.name = "MovieApp"
 include(":app")
 include(":core")
 include(":core:network")

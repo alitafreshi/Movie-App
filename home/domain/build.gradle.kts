@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(libs.plugins.kotlin.jvm.get().pluginId)
-    id(libs.plugins.org.jetbrains.kotlin.kapt.get().pluginId)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 java {
@@ -15,5 +15,5 @@ dependencies {
     implementation(libs.java.inject)
 
     //DATA STATE MODULE
-    implementation(project(Modules.dataState))
+    implementation(project(":core:data-state"))
 }

@@ -1,20 +1,20 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(libs.plugins.com.android.application.get().pluginId)
-    id(libs.plugins.org.jetbrains.kotlin.android.get().pluginId)
-    id(libs.plugins.org.jetbrains.kotlin.kapt.get().pluginId)
-    id(libs.plugins.org.jetbrains.kotlin.serialization.plugin.get().pluginId)
-    id(libs.plugins.dagger.hilt.android.get().pluginId)
-    id(libs.plugins.jetpack.navigation.safe.args.plugin.get().pluginId)
-    id(libs.plugins.org.jetbrains.koltin.parcelize.plugin.get().pluginId)
+    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.org.jetbrains.kotlin.serialization.plugin)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.jetpack.navigation.safe.args.plugin)
+    alias(libs.plugins.org.jetbrains.koltin.parcelize.plugin)
 }
 
 android {
-    namespace = Application.appId
+    namespace = "com.tafreshiali.moviewapp"
     compileSdk = libs.versions.apllication.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = Application.appId
+        applicationId = "com.tafreshiali.moviewapp"
         minSdk = libs.versions.application.minsdk.get().toInt()
         multiDexEnabled = true
         targetSdk = libs.versions.apllication.targetsdk.get().toInt()
@@ -71,10 +71,10 @@ dependencies {
     implementation(libs.androix.appcompat)
     implementation(libs.androix.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
-    testImplementation(Junit.junit)
-    androidTestImplementation(Junit.junitTestExt)
-    androidTestImplementation(Junit.junitTestExtKtx)
-    androidTestImplementation(Espresso.espresso)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.espresso)
 
 
     //COMPOSE
@@ -98,13 +98,13 @@ dependencies {
     implementation(libs.bundles.jetpack.navigation)
 
     //FIREBASE MODULE
-    implementation(project(Modules.firebase))
+    implementation(project(":core:firebase"))
 
     //COMPONENTS MODULE
-    implementation(project(Modules.components))
+    implementation(project(":core:components"))
 
     //HOME MODULE
-    implementation(project(Modules.homePresentation))
+    implementation(project(":home:presentation"))
 
 }
 kapt {

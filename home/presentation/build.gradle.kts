@@ -1,11 +1,11 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(libs.plugins.android.module.plugins.get().pluginId)
-    id(libs.plugins.android.module.project.config.get().pluginId)
+    alias(libs.plugins.android.module.plugins)
+    alias(libs.plugins.android.module.project.config)
 }
 
 android {
-    namespace = NameSpaces.homePresentation
+    namespace = "com.tafreshiali.presentation"
 }
 
 dependencies {
@@ -14,10 +14,10 @@ dependencies {
     implementation(libs.androix.lifecycle.runtime.ktx)
     implementation(libs.androidx.annotation)
 
-    testImplementation(Junit.junit)
-    androidTestImplementation(Junit.junitTestExt)
-    androidTestImplementation(Junit.junitTestExtKtx)
-    androidTestImplementation(Espresso.espresso)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.espresso)
 
     //COMPOSE
     implementation(platform(libs.compose.bom))
@@ -42,19 +42,19 @@ dependencies {
     implementation(libs.bundles.jetpack.navigation)
 
     //HOME DOMAIN MODULE
-    implementation(project(Modules.homeDomain))
+    implementation(project(":home:domain"))
 
     //HOME DATA MODULE
-    implementation(project(Modules.homeData))
+    implementation(project(":home:data"))
 
     //CORE APP STATE MODULE
-    implementation(project(Modules.appStatemanger))
+    implementation(project(":core:app-state-manager"))
 
     //CORE COMPONENTS MODULE
-    implementation(project(Modules.components))
+    implementation(project(":core:components"))
 
     //CORE DATA STATE MODULE
-    implementation(project(Modules.dataState))
+    implementation(project(":core:data-state"))
 
 }
 kapt {

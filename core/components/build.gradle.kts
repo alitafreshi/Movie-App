@@ -1,11 +1,11 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(libs.plugins.com.android.library.get().pluginId)
-    id(libs.plugins.org.jetbrains.kotlin.android.get().pluginId)
+    alias(libs.plugins.com.android.library)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = NameSpaces.coreComponents
+    namespace = "com.tafreshiali.components"
     compileSdk = libs.versions.apllication.compileSdk.get().toInt()
 
     defaultConfig {
@@ -47,10 +47,10 @@ dependencies {
 
     implementation(libs.androix.core.ktx)
     implementation(libs.androidx.annotation)
-    testImplementation(Junit.junit)
-    androidTestImplementation(Junit.junitTestExt)
-    androidTestImplementation(Junit.junitTestExtKtx)
-    androidTestImplementation(Espresso.espresso)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.espresso)
 
     //COMPOSE
     implementation(platform(libs.compose.bom))
@@ -64,6 +64,6 @@ dependencies {
     implementation(libs.jetpack.navigation.ui.ktx)
 
     //APP STATE MANGER MODULE
-    implementation(project(Modules.appStatemanger))
+    implementation(project(":core:app-state-manager"))
 
 }

@@ -1,18 +1,18 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(libs.plugins.com.android.library.get().pluginId)
-    id(libs.plugins.org.jetbrains.kotlin.android.get().pluginId)
-    id(libs.plugins.google.services.get().pluginId)
-    id(libs.plugins.dagger.hilt.android.get().pluginId)
-    id(libs.plugins.org.jetbrains.kotlin.kapt.get().pluginId)
+    alias(libs.plugins.com.android.library)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 android {
-    namespace = NameSpaces.coreFriebase
-    compileSdk = Application.compileSdk
+    namespace = "com.tafreshiali.firebase"
+    compileSdk = libs.versions.apllication.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = Application.minSdk
+        minSdk = libs.versions.application.minsdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -41,10 +41,10 @@ dependencies {
     implementation(libs.androix.lifecycle.runtime.ktx)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.lifecycle.services)
-    testImplementation(Junit.junit)
-    androidTestImplementation(Junit.junitTestExt)
-    androidTestImplementation(Junit.junitTestExtKtx)
-    androidTestImplementation(Espresso.espresso)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.espresso)
 
     //FCM
     api(platform(libs.firebase.bom))

@@ -47,3 +47,4 @@ fun Project.getVersionProperty(versionProperty: String): String {
     }
     return propertyValue
 }
+

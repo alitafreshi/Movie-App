@@ -1,16 +1,16 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-@Suppress("DSL_SCOPE_VIOLATION")
-repositories {
-    google()
-    mavenCentral()
-    mavenLocal()
-    gradlePluginPortal()
-    maven(url = "https://jitpack.io")
-}
-
 plugins {
     `kotlin-dsl`
+}
+
+// Configure the build-logic plugins to target JDK 17
+// This matches the JDK used to build the project, and is not related to what is running on device.
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+kotlin {
+    jvmToolchain(17)
 }
 
 //https://williamkingsley.medium.com/custom-gradle-plugins-in-android-23342b98e721
