@@ -22,9 +22,9 @@ dependencies {
     implementation(libs.ktor.serialization.gson)
 
     //domain module
-    implementation(project(":home:domain"))
+    implementation(projects.home.domain)
 
     //network module
-    implementation(project(":core:network"))
+    implementation(projects.core.network)
 
 }

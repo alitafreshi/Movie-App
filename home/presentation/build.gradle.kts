@@ -42,19 +42,19 @@ dependencies {
     implementation(libs.bundles.jetpack.navigation)
 
     //HOME DOMAIN MODULE
-    implementation(project(":home:domain"))
+    implementation(projects.home.domain)
 
     //HOME DATA MODULE
-    implementation(project(":home:data"))
+    implementation(projects.home.data)
 
     //CORE APP STATE MODULE
-    implementation(project(":core:app-state-manager"))
+    implementation(projects.core.appStateManager)
 
     //CORE COMPONENTS MODULE
-    implementation(project(":core:components"))
+    implementation(projects.core.components)
 
     //CORE DATA STATE MODULE
-    implementation(project(":core:data-state"))
+    implementation(projects.core.dataState)
 
 }
 kapt {

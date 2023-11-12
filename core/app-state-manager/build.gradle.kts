@@ -16,5 +16,5 @@ dependencies {
     implementation(libs.java.inject)
 
     //coroutines dispatchers
-    implementation(project(":core:coroutines-dispatchers"))
+    implementation(projects.core.coroutinesDispatchers)
 }

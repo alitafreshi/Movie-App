@@ -15,5 +15,5 @@ dependencies {
     implementation(libs.java.inject)
 
     //DATA STATE MODULE
-    implementation(project(":core:data-state"))
+    implementation(projects.core.dataState)
 }

@@ -98,13 +98,13 @@ dependencies {
     implementation(libs.bundles.jetpack.navigation)
 
     //FIREBASE MODULE
-    implementation(project(":core:firebase"))
+    implementation(projects.core.firebase)
 
     //COMPONENTS MODULE
-    implementation(project(":core:components"))
+    implementation(projects.core.components)
 
     //HOME MODULE
-    implementation(project(":home:presentation"))
+    implementation(projects.home.presentation)
 
 }
 kapt {

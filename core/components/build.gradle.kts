@@ -64,6 +64,6 @@ dependencies {
     implementation(libs.jetpack.navigation.ui.ktx)
 
     //APP STATE MANGER MODULE
-    implementation(project(":core:app-state-manager"))
+    implementation(projects.core.appStateManager)
 
 }
