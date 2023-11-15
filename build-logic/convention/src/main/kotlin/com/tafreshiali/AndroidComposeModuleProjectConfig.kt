@@ -4,7 +4,7 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class AndroidModuleProjectConfig: Plugin<Project> {
+class AndroidComposeModuleProjectConfig: Plugin<Project> {
 
     override fun apply(project: Project) {
         setProjectConfig(project)

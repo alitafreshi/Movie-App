@@ -22,9 +22,9 @@ gradlePlugin {
             implementationClass = "com.tafreshiali.AndroidModulePlugins"
         }
 
-        register("android-module-project-config") {
-            id = "android-module-project-config"
-            implementationClass = "com.tafreshiali.AndroidModuleProjectConfig"
+        register("android-compose-module-project-config") {
+            id = "android-compose-module-project-config"
+            implementationClass = "com.tafreshiali.AndroidComposeModuleProjectConfig"
         }
 
         register("android-compose-submodule") {
