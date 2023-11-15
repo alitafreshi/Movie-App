@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     `kotlin-dsl`
 }
@@ -24,6 +25,11 @@ gradlePlugin {
         register("android-module-project-config") {
             id = "android-module-project-config"
             implementationClass = "com.tafreshiali.AndroidModuleProjectConfig"
+        }
+
+        register("android-compose") {
+            id = "android-compose"
+            implementationClass = "com.tafreshiali.AndroidComposeDependencies"
         }
     }
 }

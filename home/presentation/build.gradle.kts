@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.android.module.plugins)
     alias(libs.plugins.android.module.project.config)
+    alias(libs.plugins.android.compose)
 }
 
 android {

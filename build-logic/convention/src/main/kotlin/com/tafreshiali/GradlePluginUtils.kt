@@ -4,8 +4,6 @@ import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
 fun Project.android(): LibraryExtension =
@@ -15,25 +13,42 @@ fun Project.android(): LibraryExtension =
 fun Project.versionCatalog(): VersionCatalog =
     extensions.getByType<VersionCatalogsExtension>().named("libs")
 
-
-fun addNecessaryLibraries(project: Project, dependecyName: String) {
-    project.versionCatalog().findLibrary(dependecyName).ifPresent {
-        project.dependencies {
-            //https://stackoverflow.com/a/63068879
-            //https://youtu.be/Z97sl7MrrzE?si=2iLJJQlqVFjZCTUe
+//https://stackoverflow.com/a/63068879
+//https://youtu.be/Z97sl7MrrzE?si=2iLJJQlqVFjZCTUe
+fun Project.findLibrary(dependencyName: String) {
+    versionCatalog().findLibrary(dependencyName).ifPresent {
+        val foundDependency = it.orNull
+        if (foundDependency != null) {
+            println("REQUESTED_LIBRARY is $dependencyName ")
+            println("REQUESTED_LIBRARY module is ${foundDependency.module} ")
+            println("REQUESTED_LIBRARY artifacts is ${foundDependency.artifacts} ")
+            println("REQUESTED_LIBRARY group is ${foundDependency.group} ")
+            println("REQUESTED_LIBRARY version is ${foundDependency.version} ")
+            return@ifPresent
         }
+        println("REQUESTED_LIBRARY $dependencyName Didn't find in the versionCatalog")
     }
+}
 
+fun Project.findBundle(bundleName: String) {
+    versionCatalog().findBundle(bundleName).ifPresent {
+        val foundBundle = it.orNull
+        if (foundBundle != null) {
+            println("REQUESTED_BUNDLE is $foundBundle ")
+            return@ifPresent
+        }
+        println("REQUESTED_BUNDLE $bundleName Didn't find in the versionCatalog")
+    }
 }
 
 fun Project.addNecessaryPlugins(pluginsList: List<String>) {
-    val availdablePluginsList =
+    val availablePluginsList =
         versionCatalog().pluginAliases.filter { it in pluginsList.map { pluginName -> pluginName } }
     project.apply {
-        availdablePluginsList.forEach {
-            versionCatalog().findPlugin(it).ifPresent { vaildablPlugin ->
-                println(" fuck plugin ${vaildablPlugin.get().pluginId}")
-                plugin(vaildablPlugin.get().pluginId)
+        availablePluginsList.forEach {
+            versionCatalog().findPlugin(it).ifPresent { validPlugin ->
+                println(" fuck plugin ${validPlugin.get().pluginId}")
+                plugin(validPlugin.get().pluginId)
             }
         }
     }
