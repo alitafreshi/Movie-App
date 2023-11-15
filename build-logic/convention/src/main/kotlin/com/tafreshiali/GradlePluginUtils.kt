@@ -44,7 +44,7 @@ fun Project.findBundle(bundleName: String) {
 fun Project.addNecessaryPlugins(pluginsList: List<String>) {
     val availablePluginsList =
         versionCatalog().pluginAliases.filter { it in pluginsList.map { pluginName -> pluginName } }
-    project.apply {
+    apply {
         availablePluginsList.forEach {
             versionCatalog().findPlugin(it).ifPresent { validPlugin ->
                 println(" fuck plugin ${validPlugin.get().pluginId}")
@@ -52,7 +52,6 @@ fun Project.addNecessaryPlugins(pluginsList: List<String>) {
             }
         }
     }
-
 }
 
 fun Project.getVersionProperty(versionProperty: String): String {
@@ -62,4 +61,18 @@ fun Project.getVersionProperty(versionProperty: String): String {
     }
     return propertyValue
 }
+
+fun Project.hasPlugin(plugIn: String): Boolean = plugins.hasPlugin(plugIn)
+
+fun Project.hasDependency(dependencyName: String): Boolean {
+    return configurations
+        .flatMap { it.dependencies }
+        .any { dependency ->
+            // Replace "your-group:your-artifact:your-version" with the actual dependency coordinates
+           // dependency.group == dependencyName
+                    dependency.name == dependencyName
+                    //dependency.version == "your-version"
+        }
+}
+fun Project.isAndroidModule(): Boolean = hasProperty("android")
 

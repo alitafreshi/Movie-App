@@ -27,9 +27,9 @@ gradlePlugin {
             implementationClass = "com.tafreshiali.AndroidModuleProjectConfig"
         }
 
-        register("android-compose") {
-            id = "android-compose"
-            implementationClass = "com.tafreshiali.AndroidComposeDependencies"
+        register("android-compose-submodule") {
+            id = "android-compose-submodule"
+            implementationClass = "com.tafreshiali.AndroidComposeSubModulesPlugin"
         }
     }
 }
