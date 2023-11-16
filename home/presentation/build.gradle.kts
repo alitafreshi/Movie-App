@@ -54,7 +54,6 @@ dependencies {
 
     //CORE DATA STATE MODULE
     implementation(projects.core.dataState)
-
 }
 kapt {
     correctErrorTypes = true

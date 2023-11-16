@@ -31,6 +31,10 @@ gradlePlugin {
             id = "android-compose-submodule"
             implementationClass = "com.tafreshiali.AndroidComposeSubModulesPlugin"
         }
+        register("product-flavors-plugin"){
+            id = "product-flavors-plugin"
+            implementationClass = "com.tafreshiali.ProductFlavorPlugin"
+        }
     }
 }
 

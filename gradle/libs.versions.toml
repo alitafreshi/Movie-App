@@ -149,3 +149,4 @@ firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "
 android-module-plugins = { id = "android-module-plugins", version = "unspecified" }
 android-module-project-config = { id = "android-compose-module-project-config", version = "unspecified" }
 android-compose-submodule = { id = "android-compose-submodule", version = "unspecified" }
+product-flavors = { id = "product-flavors-plugin", version = "unspecified" }

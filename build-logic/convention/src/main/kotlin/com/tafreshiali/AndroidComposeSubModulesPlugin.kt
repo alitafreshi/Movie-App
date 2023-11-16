@@ -14,7 +14,7 @@ class AndroidComposeSubModulesPlugin : Plugin<Project> {
                 //detect compose modules
                 if (isAndroidComposeModule()) {
                     println("SUBMODULE displayableName is $displayName ")
-                        addNecessaryPlugins(listOf("android.module.project.config"))
+                    addNecessaryPlugins(listOf("android.module.project.config", "product.flavors"))
                 }
             }
         }

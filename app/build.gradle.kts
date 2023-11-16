@@ -44,6 +44,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
 
     }
+
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -52,15 +53,28 @@ android {
         compose = true
         viewBinding = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    flavorDimensions += "default"
+    productFlavors {
+        create("qa") {
+            dimension = "default"
+            applicationIdSuffix = ".qa"
+        }
+    }
 }
+
+//Add dependency for a product flavor
+val qaImplementation by configurations
 
 dependencies {
     //Androidx
@@ -105,7 +119,7 @@ dependencies {
 
     //HOME MODULE
     implementation(projects.home.presentation)
-
+    qaImplementation(libs.java.inject)
 }
 kapt {
     correctErrorTypes = true
