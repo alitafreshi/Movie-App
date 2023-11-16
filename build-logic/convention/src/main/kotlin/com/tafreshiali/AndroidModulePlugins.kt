@@ -16,7 +16,7 @@ class AndroidModulePlugins : Plugin<Project> {
                 "org.jetbrains.kotlin.android",
                 "org.jetbrains.kotlin.kapt",
                 "dagger.hilt.android",
-                "jetpack.navigation.safe.args-plugin",
+                "jetpack.navigation.safe.args.plugin",
                 "org.jetbrains.koltin.parcelize.plugin"
             )
         )

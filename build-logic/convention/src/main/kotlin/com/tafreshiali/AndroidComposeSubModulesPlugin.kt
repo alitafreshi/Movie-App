@@ -12,7 +12,7 @@ class AndroidComposeSubModulesPlugin : Plugin<Project> {
         subprojects {
             afterEvaluate {
                 //detect compose modules
-                if (hasPlugin("com.android.library") && hasDependency("compose-bom")) {
+                if (isAndroidComposeModule()) {
                     println("SUBMODULE displayableName is $displayName ")
                         addNecessaryPlugins(listOf("android.module.project.config"))
                 }

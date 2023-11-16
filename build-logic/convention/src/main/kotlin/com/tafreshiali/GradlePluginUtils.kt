@@ -68,11 +68,16 @@ fun Project.hasDependency(dependencyName: String): Boolean {
     return configurations
         .flatMap { it.dependencies }
         .any { dependency ->
+            println("PASSED_DEPENDENCY is $dependencyName")
+            println("DEFINED_DEPENDENCY is ${dependency}")
             // Replace "your-group:your-artifact:your-version" with the actual dependency coordinates
-           // dependency.group == dependencyName
-                    dependency.name == dependencyName
-                    //dependency.version == "your-version"
+            // dependency.group == dependencyName
+            dependency.name == dependencyName
+            //dependency.version == "your-version"
         }
 }
-fun Project.isAndroidModule(): Boolean = hasProperty("android")
+
+fun Project.isAndroidModule(): Boolean = hasProperty("android") && hasPlugin("com.android.library") && hasPlugin("org.jetbrains.kotlin.android")
+
+fun Project.isAndroidComposeModule(): Boolean = isAndroidModule() && hasDependency("compose-bom")
 
