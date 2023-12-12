@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.jetpack.navigation.safe.args.plugin)
     alias(libs.plugins.org.jetbrains.koltin.parcelize.plugin)
+    alias(libs.plugins.baselineprofile)
 }
 
 android {
@@ -30,12 +31,19 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        create("benchmark") {
+            initWith(buildTypes.getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
+            proguardFiles("benchmark-rules.pro")
         }
     }
 
@@ -119,8 +127,15 @@ dependencies {
 
     //HOME MODULE
     implementation(projects.home.presentation)
-    qaImplementation(libs.java.inject)
+
+    baselineProfile(projects.benchmark)
 }
 kapt {
     correctErrorTypes = true
+}
+
+baselineProfile {
+    // Don't build on every iteration of a full assemble.
+    // Instead enable generation directly for the release build variant.
+    automaticGenerationDuringBuild = false
 }
