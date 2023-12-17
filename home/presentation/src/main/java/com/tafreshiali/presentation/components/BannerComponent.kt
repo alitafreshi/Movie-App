@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -83,7 +84,7 @@ fun BannerComponent(modifier: Modifier = Modifier, bannerUrl: String, bannerTitl
                 top.linkTo(anchor = bannerDescription.bottom, margin = 15.dp)
                 bottom.linkTo(anchor = parent.bottom, margin = 15.dp)
                 start.linkTo(anchor = parent.start, margin = 15.dp)
-            },
+            }.testTag("banner_button"),
             onClick = { /*TODO*/ }) {
             Text(text = "Get premium", style = MaterialTheme.typography.labelMedium)
         }

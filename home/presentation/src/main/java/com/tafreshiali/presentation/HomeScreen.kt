@@ -9,14 +9,19 @@ import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.unit.dp
 import com.tafreshiali.components.BaseScreenContainer
 import com.tafreshiali.presentation.components.BannerComponent
 import com.tafreshiali.presentation.components.HomeImageSliderComponent
 import com.tafreshiali.presentation.components.HomeSectionHeaderComponent
 
+@OptIn(ExperimentalComposeUiApi::class)
 @ExperimentalMaterial3Api
 @ExperimentalFoundationApi
 @Composable
@@ -34,7 +39,7 @@ fun HomeScreen(
         }
     ) { paddingValues ->
 
-        LazyColumn(modifier = modifier, contentPadding = paddingValues) {
+        LazyColumn(modifier = modifier.testTag("myLazyColumn"), contentPadding = paddingValues) {
             item {
                 BannerComponent(
                     bannerUrl = homeViewState.bannerUrl,

@@ -13,6 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
@@ -37,7 +38,7 @@ fun HomeImageSliderComponent(modifier: Modifier = Modifier, imageUrls: List<Resu
     val pagerState = rememberPagerState()
 
     HorizontalPager(
-        modifier = modifier,
+        modifier = Modifier.testTag("popular_movies"),
         pageCount = imageUrls.size,
         state = pagerState,
         contentPadding = contentPadding
