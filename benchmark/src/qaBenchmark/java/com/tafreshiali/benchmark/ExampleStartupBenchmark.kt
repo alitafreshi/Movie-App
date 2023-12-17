@@ -25,6 +25,10 @@ import org.junit.runner.RunWith
  *
  * Run this benchmark from Studio to see startup measurements, and captured system traces
  * for investigating your app's performance.
+ *
+ *
+ * ## Important Note :
+ * ### [refer to this link for finding the objects in the screen](https://developer.android.com/jetpack/compose/testing#uiautomator-interop)
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleStartupBenchmark {
@@ -40,6 +44,7 @@ class ExampleStartupBenchmark {
     ) {
         pressHome()
         startActivityAndWait()
-        val obj = device.waitAndFindObject(By.res("myLazyColumn"), 10_000)
+        val mainList = device.waitAndFindObject(By.res("myLazyColumn"), 10_000)
+        val btnBanner = device.waitAndFindObject(By.desc("btn_banner"), 500)
     }
 }

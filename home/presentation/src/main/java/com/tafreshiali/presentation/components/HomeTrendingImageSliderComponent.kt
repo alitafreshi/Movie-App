@@ -38,7 +38,7 @@ fun HomeImageSliderComponent(modifier: Modifier = Modifier, imageUrls: List<Resu
     val pagerState = rememberPagerState()
 
     HorizontalPager(
-        modifier = Modifier.testTag("popular_movies"),
+        modifier = Modifier,
         pageCount = imageUrls.size,
         state = pagerState,
         contentPadding = contentPadding
@@ -63,7 +63,7 @@ private fun ImageSlideComponent(
     SubcomposeAsyncImage(
         model = "${HomeConstance.IMAGE_BASE_URL}/w780$imageUrl",
         contentScale = ContentScale.Crop,
-        contentDescription = "Home Slider",
+        contentDescription = "popular_movie_item",
         modifier = modifier
             .graphicsLayer {
                 lerp(
