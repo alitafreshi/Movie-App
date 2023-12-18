@@ -1,9 +1,15 @@
 package com.tafreshiali.benchmark
 
+import androidx.benchmark.macro.FrameTimingMetric
+import androidx.benchmark.macro.MacrobenchmarkScope
 import androidx.benchmark.macro.StartupMode
 import androidx.benchmark.macro.StartupTimingMetric
 import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.Direction
+import androidx.test.uiautomator.UiObject2
+import androidx.test.uiautomator.Until
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,6 +25,10 @@ import org.junit.runner.RunWith
  *
  * Run this benchmark from Studio to see startup measurements, and captured system traces
  * for investigating your app's performance.
+ *
+ *
+ * ## Important Note :
+ * ### [refer to this link for finding the objects in the screen](https://developer.android.com/jetpack/compose/testing#uiautomator-interop)
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleStartupBenchmark {
@@ -27,12 +37,14 @@ class ExampleStartupBenchmark {
 
     @Test
     fun startup() = benchmarkRule.measureRepeated(
-        packageName = "com.tafreshiali.moviewapp.qa",
-        metrics = listOf(StartupTimingMetric()),
-        iterations = 5,
-        startupMode = StartupMode.COLD
+        packageName = "com.tafreshiali.moviewapp",
+        metrics = listOf(FrameTimingMetric()),
+        iterations = 1,
+        startupMode = StartupMode.WARM
     ) {
         pressHome()
         startActivityAndWait()
+        val mainList = device.waitAndFindObject(By.res("myLazyColumn"), 10_000)
+        val btnBanner = device.waitAndFindObject(By.desc("btn_banner"), 500)
     }
 }

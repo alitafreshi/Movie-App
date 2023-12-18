@@ -7,7 +7,7 @@ android {
     namespace = "com.tafreshiali.presentation"
 }
 
-val qaImplementation: Configuration by configurations.creating
+//val qaImplementation: Configuration by configurations.creating
 
 dependencies {
 
@@ -56,7 +56,7 @@ dependencies {
 
     //CORE DATA STATE MODULE
     implementation(projects.core.dataState)
-    qaImplementation(libs.java.inject)
+   // qaImplementation(libs.java.inject)
 }
 kapt {
     correctErrorTypes = true

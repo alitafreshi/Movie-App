@@ -23,10 +23,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.core.content.ContextCompat
@@ -35,6 +38,7 @@ import com.tafreshiali.moviewapp.ui.theme.MovieAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 
+@OptIn(ExperimentalComposeUiApi::class)
 @ExperimentalMaterial3Api
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -80,8 +84,10 @@ class MainActivity : AppCompatActivity() {
 
             MovieAppTheme {
                 val appState = appViewModel.viewState.collectAsState()
-                Column(modifier = Modifier.fillMaxSize()) {
-                    Text(
+                Column(modifier = Modifier.fillMaxSize().semantics {
+                    testTagsAsResourceId = true
+                }) {
+                    /*Text(
                         modifier = Modifier
                             .fillMaxSize()
                             .clickable {
@@ -89,11 +95,11 @@ class MainActivity : AppCompatActivity() {
                             },
                         text = appState.value.fcmToken,
                         style = MaterialTheme.typography.titleLarge.copy(color = Color.Black)
-                    )
-                    /* AndroidViewBinding(
+                    )*/
+                     AndroidViewBinding(
                          factory = FragmentContainerLayoutBinding::inflate,
                          modifier = Modifier.fillMaxSize()
-                     )*/
+                     )
                 }
             }
         }

@@ -19,6 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -79,13 +82,19 @@ fun BannerComponent(modifier: Modifier = Modifier, bannerUrl: String, bannerTitl
 
         Button(
             shape = MaterialTheme.shapes.small,
-            modifier = Modifier.constrainAs(ref = bannerButton) {
-                top.linkTo(anchor = bannerDescription.bottom, margin = 15.dp)
-                bottom.linkTo(anchor = parent.bottom, margin = 15.dp)
-                start.linkTo(anchor = parent.start, margin = 15.dp)
-            },
+            modifier = Modifier
+                .constrainAs(ref = bannerButton) {
+                    top.linkTo(anchor = bannerDescription.bottom, margin = 15.dp)
+                    bottom.linkTo(anchor = parent.bottom, margin = 15.dp)
+                    start.linkTo(anchor = parent.start, margin = 15.dp)
+                },
             onClick = { /*TODO*/ }) {
-            Text(text = "Get premium", style = MaterialTheme.typography.labelMedium)
+            Text(
+                text = "Get premium",
+                style = MaterialTheme.typography.labelMedium,
+                modifier = Modifier.semantics {
+                    this.contentDescription = "btn_banner"
+                })
         }
 
     }

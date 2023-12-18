@@ -76,13 +76,13 @@ android {
     productFlavors {
         create("qa") {
             dimension = "default"
-            applicationIdSuffix = ".qa"
+            //applicationIdSuffix = ".qa"
         }
     }
 }
 
 //Add dependency for a product flavor
-val qaImplementation by configurations
+//val qaImplementation by configurations
 
 dependencies {
     //Androidx
