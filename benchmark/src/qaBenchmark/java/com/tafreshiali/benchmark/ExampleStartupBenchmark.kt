@@ -47,4 +47,37 @@ class ExampleStartupBenchmark {
         val mainList = device.waitAndFindObject(By.res("myLazyColumn"), 10_000)
         val btnBanner = device.waitAndFindObject(By.desc("btn_banner"), 500)
     }
+
+    @Test
+    fun acceptNotificationDialog() = benchmarkRule.measureRepeated(
+        packageName = "com.tafreshiali.moviewapp",
+        metrics = listOf(FrameTimingMetric()),
+        iterations = 1,
+        startupMode = StartupMode.COLD
+    ) {
+        pressHome()
+        startActivityAndWait()
+        val tvAllow = device.waitAndFindObject(By.text("Allow"), 5000)
+        tvAllow.let {
+            it.click()
+            device.wait(Until.gone(By.text("Allow")), 2000)
+        }
+    }
+
+    @Test
+    fun scrollTrendingMoviePager() = benchmarkRule.measureRepeated(
+        packageName = "com.tafreshiali.moviewapp",
+        metrics = listOf(FrameTimingMetric()),
+        iterations = 1,
+        startupMode = StartupMode.COLD
+    ) {
+        pressHome()
+        startActivityAndWait()
+        val trendingMoviesList = device.waitAndFindObject(By.desc("trending_movies_list"), 100000)
+        device.waitForIdle()
+        trendingMoviesList.setGestureMargin(device.displayWidth / 5)
+        repeat(5) {
+            trendingMoviesList.swipe(Direction.LEFT, 0.5f)
+        }
+    }
 }

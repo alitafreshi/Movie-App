@@ -5,7 +5,13 @@
       <entry key="ExampleStartupBenchmark">
         <State />
       </entry>
-      <entry key="firstTest()">
+      <entry key="acceptNotificationDialog()">
+        <State />
+      </entry>
+      <entry key="app">
+        <State />
+      </entry>
+      <entry key="scrollTrendingMoviePager()">
         <State />
       </entry>
       <entry key="startup()">
