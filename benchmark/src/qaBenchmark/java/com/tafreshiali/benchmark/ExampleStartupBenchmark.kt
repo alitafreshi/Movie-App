@@ -60,7 +60,7 @@ class ExampleStartupBenchmark {
         val tvAllow = device.waitAndFindObject(By.text("Allow"), 5000)
         tvAllow.let {
             it.click()
-            device.wait(Until.gone(By.text("Allow")), 2000)
+            device.wait(Until.gone(By.text("Allow")), 1000)
         }
     }
 
@@ -76,8 +76,9 @@ class ExampleStartupBenchmark {
         val trendingMoviesList = device.waitAndFindObject(By.desc("trending_movies_list"), 100000)
         device.waitForIdle()
         trendingMoviesList.setGestureMargin(device.displayWidth / 5)
-        repeat(5) {
-            trendingMoviesList.swipe(Direction.LEFT, 0.5f)
+
+        repeat(10) {
+            trendingMoviesList.scroll(Direction.RIGHT, 0.5f)
         }
     }
 }
