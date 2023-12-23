@@ -44,6 +44,8 @@ android {
             matchingFallbacks += listOf("release")
             isDebuggable = false
             proguardFiles("benchmark-rules.pro")
+            isShrinkResources = false
+            isMinifyEnabled = false
         }
     }
 

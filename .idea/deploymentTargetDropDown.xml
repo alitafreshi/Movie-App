@@ -2,19 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="ExampleStartupBenchmark">
+      <entry key="BaseLineProfileGenerator">
         <State />
       </entry>
-      <entry key="acceptNotificationDialog()">
+      <entry key="MainScenarioBenchmark">
         <State />
       </entry>
       <entry key="app">
         <State />
       </entry>
-      <entry key="scrollTrendingMoviePager()">
+      <entry key="runAndMeasureTheMainScenarioCompilationModeNone()">
         <State />
       </entry>
-      <entry key="startup()">
+      <entry key="startupCompilationModeNone()">
         <State />
       </entry>
     </value>

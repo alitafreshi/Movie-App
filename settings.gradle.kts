@@ -1,22 +1,22 @@
 pluginManagement {
     includeBuild("build-logic")
     repositories {
-        maven(url = "https://jitpack.io")
         google()
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
+        maven(url = "https://jitpack.io")
     }
 }
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        maven(url = "https://jitpack.io")
         google()
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
+        maven(url = "https://jitpack.io")
     }
 }
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
