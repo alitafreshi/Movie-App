@@ -7,7 +7,7 @@ apllication-compileSdk = "34"
 apllication-targetsdk = "34"
 
 #Application Dependencies
-android-gradle-plugin = "8.1.2"
+android-gradle-plugin = "8.2.0"
 kotlin = "1.8.20"
 google-gradle-plugin = "4.3.15"
 kotlin-ksp-plugin = "1.8.20-1.0.11"
@@ -41,6 +41,8 @@ glide = "4.13.1"
 junit = "4.13.2"
 junit-ktx = "1.1.5"
 espresso = "3.5.1"
+uiautomator = "2.2.0"
+benchmark-macro-junit4 = "1.2.2"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }
@@ -100,6 +102,8 @@ junit = { module = "junit:junit", version.ref = "junit" }
 junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "junit-ktx" }
 junit-ext = { module = "androidx.test.ext:junit", version.ref = "junit-ktx" }
 espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmark-macro-junit4" }
 
 
 [bundles]
@@ -144,9 +148,12 @@ kotlin-ksp-plugin = { id = "com.google.devtools.ksp", version.ref = "kotlin-ksp-
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-gradle-plugin" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics-plugin" }
+baselineprofile = { id = "androidx.baselineprofile", version.ref = "benchmark-macro-junit4"}
+
 
 # Local Plugins
 android-module-plugins = { id = "android-module-plugins", version = "unspecified" }
 android-module-project-config = { id = "android-compose-module-project-config", version = "unspecified" }
 android-compose-submodule = { id = "android-compose-submodule", version = "unspecified" }
 product-flavors = { id = "product-flavors-plugin", version = "unspecified" }
+com-android-test = { id = "com.android.test", version.ref = "android-gradle-plugin" }

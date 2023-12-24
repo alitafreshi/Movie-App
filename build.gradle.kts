@@ -11,4 +11,5 @@ plugins {
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.android.module.plugins) apply false
     alias(libs.plugins.android.compose.submodule) apply true
+    alias(libs.plugins.com.android.test) apply false
 }
