@@ -19,6 +19,10 @@ dependencies {
     androidTestImplementation(libs.junit.ext)
     androidTestImplementation(libs.junit.ext)
     androidTestImplementation(libs.espresso)
+    testImplementation(libs.google.truth)
+    testImplementation(libs.mockk)
+    testImplementation(libs.mockk.android)
+    testImplementation(libs.mockk.agent)
 
     //COMPOSE
     implementation(platform(libs.compose.bom))
