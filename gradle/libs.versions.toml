@@ -43,6 +43,8 @@ junit-ktx = "1.1.5"
 espresso = "3.5.1"
 google-truth = "1.4.2"
 mockk = "1.13.10"
+turbin = "1.1.0"
+coroutines-test = "1.8.0"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }
@@ -106,6 +108,9 @@ google-truth = { module = "com.google.truth:truth", version.ref = "google-truth"
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockk" }
+turbin = { module = "app.cash.turbine:turbine", version.ref = "turbin" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-test" }
+ktor-client-test = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 
 [bundles]

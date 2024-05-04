@@ -23,6 +23,9 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.mockk.android)
     testImplementation(libs.mockk.agent)
+    testImplementation(libs.turbin)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.ktor.client.test)
 
     //COMPOSE
     implementation(platform(libs.compose.bom))
