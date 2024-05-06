@@ -123,7 +123,6 @@ dependencies {
 
     //HOME MODULE
     implementation(projects.home.presentation)
-    qaImplementation(libs.java.inject)
 }
 kapt {
     correctErrorTypes = true
