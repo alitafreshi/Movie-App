@@ -34,11 +34,10 @@ fun HomeImageSliderComponent(modifier: Modifier = Modifier, imageUrls: List<Resu
         PaddingValues(horizontal = (screenWidth - itemWidth - horizontalPadding).dp)
 
 
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(pageCount = { imageUrls.size })
 
     HorizontalPager(
         modifier = modifier,
-        pageCount = imageUrls.size,
         state = pagerState,
         contentPadding = contentPadding
     ) { index ->
