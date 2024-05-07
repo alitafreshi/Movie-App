@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+
 @Immutable
 data class AppColorScheme(
     val primary: Color,
@@ -19,8 +20,10 @@ data class AppColorScheme(
     val surface: Color,
     val onSurface: Color,
     val warning: Color,
-    val onWarning: Color
+    val onWarning: Color,
+    val statusBar: Color
 )
+
 @Immutable
 data class AppTypography(
     val bodyExtraLargeBold: TextStyle,
@@ -61,7 +64,8 @@ val LocalAppColorScheme = staticCompositionLocalOf {
         surface = Color.Unspecified,
         onSurface = Color.Unspecified,
         warning = Color.Unspecified,
-        onWarning = Color.Unspecified
+        onWarning = Color.Unspecified,
+        statusBar = Color.Unspecified
     )
 }
 

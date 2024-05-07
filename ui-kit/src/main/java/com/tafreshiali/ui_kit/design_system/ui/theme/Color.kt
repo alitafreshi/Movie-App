@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF685CF0)
 val onPrimaryLight = Color(0xFFFFFFFF)
+val statusBarColor = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFF685CF0)
 val onPrimaryContainerLight = Color(0xFFFFFFFF)
 val secondaryLight = Color(0xFF5D5D6A)

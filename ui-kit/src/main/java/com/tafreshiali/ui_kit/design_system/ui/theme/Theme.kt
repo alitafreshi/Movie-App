@@ -25,7 +25,8 @@ private val LightColorScheme = AppColorScheme(
     success = successLight,
     onSuccess = onSuccessLight,
     warning = warningLight,
-    onWarning = onWarningLight
+    onWarning = onWarningLight,
+    statusBar = statusBarColor
 )
 
 private val typography = AppTypography(
@@ -170,7 +171,7 @@ fun AppTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = LightColorScheme.primary.toArgb()
+            window.statusBarColor = LightColorScheme.statusBar.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }

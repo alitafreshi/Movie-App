@@ -36,6 +36,7 @@ ktor = "2.3.10"
 okhttp3-logging = "4.11.0"
 leakcanary = "2.7"
 glide = "4.15.1"
+pager-indicator = "5.0"
 
 # Test Dependencies
 junit = "4.13.2"
@@ -98,6 +99,7 @@ jetpack-navigation-fragments-ktx = { module = "androidx.navigation:navigation-fr
 jetpack-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "jetpack-navigation" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+pager-indicator = { module = "com.tbuonomo:dotsindicator", version.ref = "pager-indicator" }
 
 # Test Dependencies
 junit = { module = "junit:junit", version.ref = "junit" }

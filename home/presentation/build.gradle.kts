@@ -38,6 +38,9 @@ dependencies {
     //COIL
     implementation(libs.compose.coil)
 
+    //PAGER-INDICATOR
+    implementation(libs.pager.indicator)
+
     //Hilt - CORE
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

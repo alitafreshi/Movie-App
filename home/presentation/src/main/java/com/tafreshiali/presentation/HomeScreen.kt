@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,6 +16,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tafreshiali.presentation.components.HomeMainImageSliderComponent
 import com.tafreshiali.ui_kit.BaseScreenContainer
 import com.tafreshiali.ui_kit.UserProfileContainer
 import com.tafreshiali.ui_kit.R as uiKitRes
@@ -51,14 +53,11 @@ fun HomeScreen(
         }
     ) { paddingValues ->
 
-        /*LazyColumn(modifier = modifier, contentPadding = paddingValues) {
+        LazyColumn(modifier = modifier, contentPadding = paddingValues) {
             item {
-                BannerComponent(
-                    bannerUrl = homeViewState.bannerUrl,
-                    bannerTitle = "Watch This Beautiful movie and send back your feed back"
-                )
+                HomeMainImageSliderComponent(imageUrls = homeViewState.trendingMovies.take(4))
             }
-            item {
+            /*item {
                 HomeSectionHeaderComponent(key = "Popular", value = "view all")
             }
 
@@ -66,8 +65,8 @@ fun HomeScreen(
                 HomeImageSliderComponent(
                     imageUrls = homeViewState.trendingMovies
                 )
-            }
-        }*/
+            }*/
+        }
     }
 }
 
