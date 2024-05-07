@@ -1,4 +1,4 @@
-package com.tafreshiali.moviewapp.ui.theme
+package com.tafreshiali.ui_kit.design_system.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

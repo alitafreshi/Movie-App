@@ -123,6 +123,9 @@ dependencies {
 
     //HOME MODULE
     implementation(projects.home.presentation)
+
+    //UI-KIT Module
+    implementation(projects.uiKit)
 }
 kapt {
     correctErrorTypes = true

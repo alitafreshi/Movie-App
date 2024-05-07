@@ -1,4 +1,4 @@
-package com.tafreshiali.moviewapp.ui.theme
+package com.tafreshiali.ui_kit.design_system.ui.theme
 
 import android.app.Activity
 import androidx.compose.runtime.Composable
@@ -159,11 +159,10 @@ fun AppTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = LightColorScheme
     val view = LocalView.current
 
     CompositionLocalProvider(
-        LocalAppColorScheme provides colorScheme,
+        LocalAppColorScheme provides LightColorScheme,
         LocalAppTypography provides typography,
         content = content
     )
@@ -171,7 +170,7 @@ fun AppTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = LightColorScheme.primary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }

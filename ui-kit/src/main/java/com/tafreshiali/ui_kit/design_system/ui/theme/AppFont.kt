@@ -1,9 +1,9 @@
-package com.tafreshiali.moviewapp.ui.theme
+package com.tafreshiali.ui_kit.design_system.ui.theme
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import com.tafreshiali.moviewapp.R
+import com.tafreshiali.ui_kit.R
 
 val Mulish = FontFamily(
     Font(R.font.mulish_black, FontWeight.Black),

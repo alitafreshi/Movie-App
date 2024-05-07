@@ -1,9 +1,10 @@
-package com.tafreshiali.moviewapp.ui.theme
+package com.tafreshiali.ui_kit.design_system.ui.theme
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-
+@Immutable
 data class AppColorScheme(
     val primary: Color,
     val onPrimary: Color,
@@ -20,7 +21,7 @@ data class AppColorScheme(
     val warning: Color,
     val onWarning: Color
 )
-
+@Immutable
 data class AppTypography(
     val bodyExtraLargeBold: TextStyle,
     val bodyExtraLargeSemiBold: TextStyle,

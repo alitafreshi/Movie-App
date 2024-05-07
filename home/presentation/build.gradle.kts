@@ -63,7 +63,12 @@ dependencies {
 
     //CORE DATA STATE MODULE
     implementation(projects.core.dataState)
+
+    //UI-KIT MODULE
+    implementation(projects.uiKit)
+
     qaImplementation(libs.java.inject)
+
 }
 kapt {
     correctErrorTypes = true

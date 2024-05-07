@@ -22,7 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.core.content.ContextCompat
 import com.tafreshiali.moviewapp.databinding.FragmentContainerLayoutBinding
-import com.tafreshiali.moviewapp.ui.theme.AppTheme
+import com.tafreshiali.ui_kit.design_system.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 
