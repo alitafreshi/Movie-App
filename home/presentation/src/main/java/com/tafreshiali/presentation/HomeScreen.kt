@@ -1,24 +1,25 @@
 package com.tafreshiali.presentation
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tafreshiali.components.BaseScreenContainer
-import com.tafreshiali.presentation.components.BannerComponent
-import com.tafreshiali.presentation.components.HomeImageSliderComponent
-import com.tafreshiali.presentation.components.HomeSectionHeaderComponent
+import com.tafreshiali.ui_kit.BaseScreenContainer
+import com.tafreshiali.ui_kit.UserProfileContainer
+import com.tafreshiali.ui_kit.R as uiKitRes
 
 @ExperimentalMaterial3Api
-@ExperimentalFoundationApi
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
@@ -26,15 +27,31 @@ fun HomeScreen(
     homeEvents: (HomeEvents) -> Unit
 ) {
     BaseScreenContainer(
-        topAppBarNavigationIcon = {
-            Icon(imageVector = Icons.Rounded.Home, contentDescription = "Home")
-        },
-        topAppBarActions = {
-            Icon(imageVector = Icons.Rounded.Menu, contentDescription = "Menu")
+        topAppBar = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 24.dp, end = 24.dp, top = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                UserProfileContainer(name = "Mohit", profileDescription = "Let's watch a movie")
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Image(
+                        imageVector = ImageVector.vectorResource(uiKitRes.drawable.ic_search_topbar),
+                        contentDescription = "ic_search_top_bar"
+                    )
+                    Spacer(modifier = Modifier.size(width = 16.dp, height = 1.dp))
+                    Image(
+                        imageVector = ImageVector.vectorResource(uiKitRes.drawable.ic_bell_topbar),
+                        contentDescription = "ic_bell_top_bar"
+                    )
+                }
+            }
         }
     ) { paddingValues ->
 
-        LazyColumn(modifier = modifier, contentPadding = paddingValues) {
+        /*LazyColumn(modifier = modifier, contentPadding = paddingValues) {
             item {
                 BannerComponent(
                     bannerUrl = homeViewState.bannerUrl,
@@ -45,13 +62,18 @@ fun HomeScreen(
                 HomeSectionHeaderComponent(key = "Popular", value = "view all")
             }
 
-
             item {
                 HomeImageSliderComponent(
                     imageUrls = homeViewState.trendingMovies
                 )
             }
-        }
+        }*/
     }
+}
 
+@ExperimentalMaterial3Api
+@Preview(showBackground = true, showSystemUi = false)
+@Composable
+private fun HomeScreenPreview() {
+    HomeScreen(homeViewState = HomeViewState(), homeEvents = {})
 }
