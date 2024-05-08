@@ -16,4 +16,7 @@ dependencies {
 
     //DATA STATE MODULE
     implementation(projects.core.dataState)
+
+    //HOME DATA MODULE
+    implementation(projects.home.data)
 }
