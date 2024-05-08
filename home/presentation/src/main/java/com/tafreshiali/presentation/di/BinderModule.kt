@@ -11,7 +11,6 @@ import dagger.hilt.android.components.ViewModelComponent
 @Module
 @InstallIn(ViewModelComponent::class)
 abstract class BinderModule {
-
     @Reusable
     @Binds
     abstract fun providesHomeMoviesRepository(homeMoviesRepositoryImpl: HomeMoviesRepositoryImpl): HomeMoviesRepository

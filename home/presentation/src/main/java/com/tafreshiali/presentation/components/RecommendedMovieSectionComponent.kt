@@ -14,18 +14,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tafreshiali.domain.model.Result
+import com.tafreshiali.domain.model.intro.MovieIntroItem
 import com.tafreshiali.presentation.HomeConstance
 import com.tafreshiali.ui_kit.ImageComponent
 import com.tafreshiali.ui_kit.MovieCategoryHeaderComponent
 import com.tafreshiali.ui_kit.design_system.ui.theme.AppTheme
 
 @Composable
-fun RecommendedMovieSectionComponent(modifier: Modifier = Modifier, movieList: List<Result>) {
+fun RecommendedMovieSectionComponent(modifier: Modifier = Modifier, movieList: List<MovieIntroItem>) {
     Column(modifier = modifier.padding(top = 24.dp)) {
         MovieCategoryHeaderComponent(categoryTitle = "Recommended for you")
         LazyRow(
@@ -42,7 +41,7 @@ fun RecommendedMovieSectionComponent(modifier: Modifier = Modifier, movieList: L
 }
 
 @Composable
-fun MovieItemComponent(modifier: Modifier = Modifier, movie: Result) {
+fun MovieItemComponent(modifier: Modifier = Modifier, movie: MovieIntroItem) {
     Column(modifier = modifier.width(120.dp), horizontalAlignment = Alignment.Start) {
         ImageComponent(
             modifier = Modifier
@@ -58,9 +57,8 @@ fun MovieItemComponent(modifier: Modifier = Modifier, movie: Result) {
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
-        //TODO We Have get add genreIds
         Text(
-            text = "Romance, Drama",
+            text = movie.genreList,
             style = AppTheme.typography.bodyExtraSmallRegular,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
@@ -72,22 +70,12 @@ fun MovieItemComponent(modifier: Modifier = Modifier, movie: Result) {
 @Composable
 private fun MovieItemComponentPreview() {
     MovieItemComponent(
-        movie = Result(
-            adult = false,
-            backdropPath = "lorem",
-            genreIds = listOf(),
-            id = 3601,
-            mediaType = "accusata",
-            originalLanguage = "cursus",
-            originalTitle = "nonumy",
-            overview = "elitr",
-            popularity = 4.5,
-            posterPath = "postulant",
-            releaseDate = "quis",
-            title = "placerat",
-            video = false,
-            voteAverage = 6.7,
-            voteCount = 4767
+        movie = MovieIntroItem(
+            genreList = "",
+            id = 8945,
+            originalTitle = "metus",
+            posterPath = "hendrerit",
+            overview = "tibique"
         )
     )
 }

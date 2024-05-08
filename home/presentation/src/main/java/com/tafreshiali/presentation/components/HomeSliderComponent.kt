@@ -31,7 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.tafreshiali.domain.model.Result
+import com.tafreshiali.domain.model.intro.MovieIntroItem
 import com.tafreshiali.presentation.HomeConstance
 import com.tafreshiali.ui_kit.ImageComponent
 import com.tafreshiali.ui_kit.ImageComponentState
@@ -44,7 +44,7 @@ import com.tbuonomo.viewpagerdotsindicator.compose.type.ShiftIndicatorType
 @Composable
 fun HomeMainImageSliderComponent(
     modifier: Modifier = Modifier,
-    imageUrls: List<Result>,
+    imageUrls: List<MovieIntroItem>,
     indicatorColor: Color = AppTheme.colorScheme.primary,
 ) {
 
@@ -78,7 +78,7 @@ fun HomeMainImageSliderComponent(
 @Composable
 private fun ImageSlideComponent(
     modifier: Modifier = Modifier,
-    item: Result
+    item: MovieIntroItem
 ) {
     BoxWithConstraints(
         modifier = modifier

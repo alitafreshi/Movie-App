@@ -24,22 +24,27 @@ class HomeViewModel @Inject constructor(private val getTrendingMoviesUseCase: Ge
             HomeEvents.GetTrendingMovies -> {
                 getTrendingMovies()
             }
+
+            HomeEvents.OnRetryClick -> {
+
+            }
         }
     }
 
     private fun getTrendingMovies() {
-        getTrendingMoviesUseCase().onEach { dataState ->
+        val x = getTrendingMoviesUseCase().onEach { dataState ->
             when (dataState) {
                 is DataState.Data -> {
-                    dataState.data?.let { result ->
-                        setViewState(
-                            viewState = getCurrentViewStateOrNew().copy(
-                                bannerUrl = result.first().posterPath,
-                                trendingMovies = result,
-                                loadingState = LoadingState.Idle
-                            )
+                    val sliderImageList = dataState.data.moviesIntro.slice(0.until(4))
+                    val trendingMovies =
+                        dataState.data.moviesIntro.slice(4.until(dataState.data.moviesIntro.size))
+                    setViewState(
+                        viewState = getCurrentViewStateOrNew().copy(
+                            sliderImageList = sliderImageList,
+                            trendingMovies = trendingMovies,
+                            loadingState = LoadingState.Idle
                         )
-                    }
+                    )
                 }
 
                 is DataState.Error -> setViewState(
@@ -54,7 +59,7 @@ class HomeViewModel @Inject constructor(private val getTrendingMoviesUseCase: Ge
                     )
                 )
             }
-        }.launchIn(viewModelScope)
+        } .launchIn(viewModelScope)
     }
 
 }

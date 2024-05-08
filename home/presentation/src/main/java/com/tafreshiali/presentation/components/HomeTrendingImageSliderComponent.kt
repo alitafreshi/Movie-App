@@ -1,7 +1,6 @@
 package com.tafreshiali.presentation.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.HorizontalPager
@@ -16,17 +15,16 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import androidx.compose.ui.zIndex
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
-import com.tafreshiali.domain.model.Result
+import com.tafreshiali.domain.model.intro.MovieIntroItem
 import com.tafreshiali.presentation.HomeConstance
 import kotlin.math.absoluteValue
 
 @ExperimentalFoundationApi
 @Composable
-fun HomeImageSliderComponent(modifier: Modifier = Modifier, imageUrls: List<Result>) {
+fun HomeImageSliderComponent(modifier: Modifier = Modifier, imageUrls: List<MovieIntroItem>) {
     val horizontalPadding = 10
     val itemWidth = 270
     val screenWidth = LocalConfiguration.current.screenWidthDp

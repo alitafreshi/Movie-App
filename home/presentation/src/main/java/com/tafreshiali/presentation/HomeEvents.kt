@@ -1,5 +1,6 @@
 package com.tafreshiali.presentation
 
 sealed class HomeEvents {
-    object GetTrendingMovies : HomeEvents()
+    data object GetTrendingMovies : HomeEvents()
+    data object OnRetryClick : HomeEvents()
 }

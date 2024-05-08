@@ -48,14 +48,13 @@ dependencies {
     //Hilt - NAVIGATION
     implementation(libs.bundles.hilt.navigation)
 
-
     //JETPACK-NAVIGATION
     implementation(libs.bundles.jetpack.navigation)
 
     //HOME DOMAIN MODULE
     implementation(projects.home.domain)
 
-    //HOME DATA MODULE
+    //HOME DAT MODULE
     implementation(projects.home.data)
 
     //CORE APP STATE MODULE
