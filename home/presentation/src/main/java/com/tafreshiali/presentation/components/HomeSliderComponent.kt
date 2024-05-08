@@ -4,6 +4,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -29,11 +31,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImagePainter
-import coil.compose.SubcomposeAsyncImage
-import coil.compose.SubcomposeAsyncImageContent
 import com.tafreshiali.domain.model.Result
 import com.tafreshiali.presentation.HomeConstance
+import com.tafreshiali.ui_kit.ImageComponent
+import com.tafreshiali.ui_kit.ImageComponentState
 import com.tafreshiali.ui_kit.design_system.ui.theme.AppTheme
 import com.tbuonomo.viewpagerdotsindicator.compose.DotsIndicator
 import com.tbuonomo.viewpagerdotsindicator.compose.model.DotGraphic
@@ -86,76 +87,78 @@ private fun ImageSlideComponent(
             .clip(shape = MaterialTheme.shapes.large),
     ) {
         val boxWithConstraintsScope = this
-        SubcomposeAsyncImage(
-            model = "${HomeConstance.IMAGE_BASE_URL}/original${item.posterPath}",
-            contentScale = ContentScale.Crop,
-            contentDescription = "home_main_slider",
-        ) {
-            when (painter.state) {
-                AsyncImagePainter.State.Empty -> {}
-
-                is AsyncImagePainter.State.Error -> {}
-
-                is AsyncImagePainter.State.Loading -> {}
-
-                is AsyncImagePainter.State.Success -> SubcomposeAsyncImageContent()
-            }
+        var showMovieContent by remember {
+            mutableStateOf(false)
         }
 
-        Column(
-            modifier = Modifier
-                .background(
-                    Brush.horizontalGradient(
-                        colorStops =
-                        arrayOf(
-                            0.4f to AppTheme.colorScheme.primary,
-                            1.0f to Color.Transparent
+        ImageComponent(
+            modifier = Modifier.fillMaxSize(),
+            imageUrl = "${HomeConstance.IMAGE_BASE_URL}/original${item.posterPath}",
+            contentScale = ContentScale.Crop,
+            contentDescription = "home_main_slider",
+            onStateChange = { imageComponentState ->
+                showMovieContent = when (imageComponentState) {
+                    ImageComponentState.Loading, ImageComponentState.Error -> false
+                    ImageComponentState.Success -> true
+                }
+            }
+        )
+        if (showMovieContent) {
+            Column(
+                modifier = Modifier
+                    .background(
+                        Brush.horizontalGradient(
+                            colorStops =
+                            arrayOf(
+                                0.4f to AppTheme.colorScheme.primary,
+                                1.0f to Color.Transparent
+                            )
                         )
                     )
-                )
-                .size(boxWithConstraintsScope.maxWidth)
-        ) {
-
-            var maxDescriptionLineCount by remember {
-                mutableIntStateOf(2)
-            }
-
-            Text(
-                text = item.originalTitle,
-                style = AppTheme.typography.bodyExtraLargeBold.copy(color = AppTheme.colorScheme.onPrimary),
-                modifier = Modifier
-                    .width(boxWithConstraintsScope.maxWidth / 2)
-                    .padding(top = 15.dp, start = 16.dp),
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                onTextLayout = {
-                    maxDescriptionLineCount = if (it.lineCount < 2) 3 else 2
-                }
-            )
-
-            Text(
-                text = item.overview,
-                style = AppTheme.typography.bodyExtraSmallRegular.copy(color = AppTheme.colorScheme.onPrimary),
-                modifier = Modifier
-                    .width(boxWithConstraintsScope.maxWidth / 2)
-                    .padding(top = 8.dp, start = 16.dp),
-                maxLines = maxDescriptionLineCount,
-                overflow = TextOverflow.Ellipsis,
-            )
-
-            Button(
-                onClick = { },
-                colors = ButtonColors(
-                    containerColor = AppTheme.colorScheme.onPrimary,
-                    contentColor = AppTheme.colorScheme.primary,
-                    disabledContentColor = Color.Unspecified,
-                    disabledContainerColor = Color.Unspecified
-                ),
-                modifier = Modifier
-                    .requiredHeight(45.dp)
-                    .padding(top = 12.dp, start = 16.dp)
+                    .size(boxWithConstraintsScope.maxWidth)
             ) {
-                Text(text = "Watch Now", style = AppTheme.typography.bodyExtraSmallBold)
+
+                var maxDescriptionLineCount by remember {
+                    mutableIntStateOf(2)
+                }
+
+                Text(
+                    text = item.originalTitle,
+                    style = AppTheme.typography.bodyExtraLargeBold.copy(color = AppTheme.colorScheme.onPrimary),
+                    modifier = Modifier
+                        .width(boxWithConstraintsScope.maxWidth / 2)
+                        .padding(top = 15.dp, start = 16.dp),
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    onTextLayout = {
+                        maxDescriptionLineCount = if (it.lineCount < 2) 3 else 2
+                    }
+                )
+
+                Text(
+                    text = item.overview,
+                    style = AppTheme.typography.bodyExtraSmallRegular.copy(color = AppTheme.colorScheme.onPrimary),
+                    modifier = Modifier
+                        .width(boxWithConstraintsScope.maxWidth / 2)
+                        .padding(top = 8.dp, start = 16.dp),
+                    maxLines = maxDescriptionLineCount,
+                    overflow = TextOverflow.Ellipsis,
+                )
+
+                Button(
+                    onClick = { },
+                    colors = ButtonColors(
+                        containerColor = AppTheme.colorScheme.onPrimary,
+                        contentColor = AppTheme.colorScheme.primary,
+                        disabledContentColor = Color.Unspecified,
+                        disabledContainerColor = Color.Unspecified
+                    ),
+                    modifier = Modifier
+                        .requiredHeight(45.dp)
+                        .padding(top = 12.dp, start = 16.dp)
+                ) {
+                    Text(text = "Watch Now", style = AppTheme.typography.bodyExtraSmallBold)
+                }
             }
         }
     }
