@@ -2,21 +2,13 @@ package com.tafreshiali.domain.interactors
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import com.tafreshiali.data.remote.HomeMoviesRepositoryImpl
+import com.tafreshiali.data.remote.model.intro.BaseMovieIntroResponse
 import com.tafreshiali.data_state.DataState
-import com.tafreshiali.domain.model.Result
-import com.tafreshiali.domain.model.TrendingMoviesResponse
+import com.tafreshiali.domain.model.intro.BaseMovieIntro
+import com.tafreshiali.domain.model.intro.MovieIntroItem
 import com.tafreshiali.domain.repository.HomeMoviesRepository
-import io.ktor.client.HttpClient
 import io.mockk.coEvery
-import io.mockk.every
-import io.mockk.impl.annotations.MockK
-import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.mockk
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -28,25 +20,22 @@ class GetTrendingMoviesUseCaseTest {
 
     private val homeMoviesRepository: HomeMoviesRepository = mockk(relaxed = true)
 
-    private val mockMovies = listOf(
-        Result(
-            adult = false,
-            backdropPath = "corrumpit",
-            genreIds = listOf(),
-            id = 6297,
-            mediaType = "brute",
-            originalLanguage = "noluisse",
-            originalTitle = "dicat",
-            overview = "antiopam",
-            popularity = 4.5,
-            posterPath = "luctus",
-            releaseDate = "quo",
-            title = "novum",
-            video = false,
-            voteAverage = 6.7,
-            voteCount = 9373
-        )
+    private val mockMovies = BaseMovieIntro(
+        page = 8171,
+        moviesIntro = listOf(
+            MovieIntroItem(
+                genreList = "natum",
+                id = 5612,
+                originalTitle = "melius",
+                posterPath = "graece",
+                overview = "disputationi"
+            )
+        ),
+        totalPages = 5186,
+        totalResults = 4327,
+        dates = null
     )
+
 
     @Before
     fun setUp() {
@@ -55,13 +44,13 @@ class GetTrendingMoviesUseCaseTest {
 
     @Test
     fun `get trending movies and verify loading state in on Start`() = runTest {
-        coEvery { homeMoviesRepository.getTrendingMovies() } returns TrendingMoviesResponse(
-            page = 8171,
-            results = listOf(),
-            totalPages = 5186,
-            totalResults = 4327
+        coEvery { homeMoviesRepository.getTrendingMovies() } returns BaseMovieIntro(
+            page = null,
+            moviesIntro = listOf(),
+            totalPages = null,
+            totalResults = null,
+            dates = null
         )
-
         getTrendingMoviesUseCase().test {
             val emission = awaitItem()
             assertThat(emission).isEqualTo(DataState.Loading)
@@ -72,11 +61,12 @@ class GetTrendingMoviesUseCaseTest {
     @Test
     fun `get trending movies and verify that movie list is null or empty should emit error state`() =
         runTest {
-            coEvery { homeMoviesRepository.getTrendingMovies() } returns TrendingMoviesResponse(
-                page = 8171,
-                results = listOf(),
-                totalPages = 5186,
-                totalResults = 4327
+            coEvery { homeMoviesRepository.getTrendingMovies() } returns BaseMovieIntro(
+                page = null,
+                moviesIntro = listOf(),
+                totalPages = null,
+                totalResults = null,
+                dates = null
             )
 
             getTrendingMoviesUseCase().test {
@@ -92,12 +82,7 @@ class GetTrendingMoviesUseCaseTest {
     @Test
     fun `get trending movies and verify that movie list isn't null or empty and emit data`() =
         runTest {
-            coEvery { homeMoviesRepository.getTrendingMovies() } returns TrendingMoviesResponse(
-                page = 8171,
-                results = mockMovies,
-                totalPages = 5186,
-                totalResults = 4327
-            )
+            coEvery { homeMoviesRepository.getTrendingMovies() } returns mockMovies
 
             getTrendingMoviesUseCase().test {
                 val loadingState = awaitItem()
