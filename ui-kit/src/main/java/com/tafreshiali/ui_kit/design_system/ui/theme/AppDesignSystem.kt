@@ -21,7 +21,8 @@ data class AppColorScheme(
     val onSurface: Color,
     val warning: Color,
     val onWarning: Color,
-    val statusBar: Color
+    val statusBar: Color,
+    val shimmerLoadingColor: Color
 )
 
 @Immutable
@@ -65,7 +66,8 @@ val LocalAppColorScheme = staticCompositionLocalOf {
         onSurface = Color.Unspecified,
         warning = Color.Unspecified,
         onWarning = Color.Unspecified,
-        statusBar = Color.Unspecified
+        statusBar = Color.Unspecified,
+        shimmerLoadingColor = Color.Unspecified
     )
 }
 

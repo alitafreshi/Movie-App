@@ -1,6 +1,8 @@
 package com.tafreshiali.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,10 +24,15 @@ import com.tafreshiali.domain.model.intro.MovieIntroItem
 import com.tafreshiali.presentation.HomeConstance
 import com.tafreshiali.ui_kit.ImageComponent
 import com.tafreshiali.ui_kit.MovieCategoryHeaderComponent
+import com.tafreshiali.ui_kit.animations.shimmerEffect
 import com.tafreshiali.ui_kit.design_system.ui.theme.AppTheme
+import com.tafreshiali.ui_kit.design_system.ui.theme.grayscale10ContainerLight
 
 @Composable
-fun RecommendedMovieSectionComponent(modifier: Modifier = Modifier, movieList: List<MovieIntroItem>) {
+fun RecommendedMovieSectionComponent(
+    modifier: Modifier = Modifier,
+    movieList: List<MovieIntroItem>
+) {
     Column(modifier = modifier.padding(top = 24.dp)) {
         MovieCategoryHeaderComponent(categoryTitle = "Recommended for you")
         LazyRow(
@@ -78,6 +86,41 @@ private fun MovieItemComponentPreview() {
             overview = "tibique"
         )
     )
+}
+
+
+@Composable
+fun MovieItemShimmerComponent() {
+    Column(modifier = Modifier.width(120.dp), horizontalAlignment = Alignment.Start) {
+        Box(
+            modifier = Modifier
+                .size(width = 120.dp, height = 180.dp)
+                .background(color = grayscale10ContainerLight, shape = RoundedCornerShape(10.dp))
+                .shimmerEffect()
+
+        )
+
+        Box(
+            modifier = Modifier
+                .size(width = 70.dp, height = 15.dp)
+                .padding(top = 6.dp)
+                .background(color = grayscale10ContainerLight, shape = MaterialTheme.shapes.extraSmall)
+                .shimmerEffect()
+        )
+        Box(
+            modifier = Modifier
+                .size(width = 50.dp, height = 12.dp)
+                .padding(top = 6.dp)
+                .background(color = grayscale10ContainerLight, shape = MaterialTheme.shapes.extraSmall)
+                .shimmerEffect()
+        )
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = false)
+@Composable
+private fun MovieItemShimmerComponentPreview() {
+    MovieItemShimmerComponent()
 }
 
 

@@ -31,17 +31,11 @@ abstract class BaseViewModel<ViewState, Events, UiEffects> :
         _viewState.value = viewState
     }
 
-    fun observeEvents(): SharedFlow<UiEffects> = uiEffects
+    fun observeEffects(): SharedFlow<UiEffects> = uiEffects
 
-    fun emitSuspendEvent(event: UiEffects) {
+    fun emitSuspendEffect(effect: UiEffects) {
         viewModelScope.launch {
-            _uiEffects.emit(value = event)
-        }
-    }
-
-    fun handleSuspendEvent(suspendBlock: (suspend () -> Unit)) {
-        viewModelScope.launch {
-            suspendBlock()
+            _uiEffects.emit(value = effect)
         }
     }
 

@@ -1,10 +1,15 @@
 package com.tafreshiali.presentation
 
-import com.tafreshiali.app_state_manager.LoadingState
 import com.tafreshiali.domain.model.intro.MovieIntroItem
 
 data class HomeViewState(
+    val homeState: HomeState = HomeState.Loading,
     val sliderImageList: List<MovieIntroItem> = emptyList(),
-    val trendingMovies: List<MovieIntroItem> = emptyList(),
-    val loadingState: LoadingState = LoadingState.Idle
-)
+    val trendingMovies: List<MovieIntroItem> = emptyList()
+) {
+    sealed interface HomeState {
+        data object Idle : HomeState
+        data object Loading : HomeState
+        data class Error(val errorMessage: String) : HomeState
+    }
+}

@@ -1,7 +1,6 @@
 package com.tafreshiali.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.tafreshiali.app_state_manager.LoadingState
 import com.tafreshiali.components.BaseViewModel
 import com.tafreshiali.data_state.DataState
 import com.tafreshiali.domain.interactors.GetTrendingMoviesUseCase
@@ -26,40 +25,40 @@ class HomeViewModel @Inject constructor(private val getTrendingMoviesUseCase: Ge
             }
 
             HomeEvents.OnRetryClick -> {
-
+                getTrendingMovies()
             }
         }
     }
 
     private fun getTrendingMovies() {
-        val x = getTrendingMoviesUseCase().onEach { dataState ->
+        getTrendingMoviesUseCase().onEach { dataState ->
             when (dataState) {
+                DataState.Loading -> setViewState(
+                    viewState = getCurrentViewStateOrNew().copy(
+                        homeState = HomeViewState.HomeState.Loading
+                    )
+                )
+
                 is DataState.Data -> {
                     val sliderImageList = dataState.data.moviesIntro.slice(0.until(4))
                     val trendingMovies =
                         dataState.data.moviesIntro.slice(4.until(dataState.data.moviesIntro.size))
                     setViewState(
                         viewState = getCurrentViewStateOrNew().copy(
+                            homeState = HomeViewState.HomeState.Idle,
                             sliderImageList = sliderImageList,
-                            trendingMovies = trendingMovies,
-                            loadingState = LoadingState.Idle
+                            trendingMovies = trendingMovies
                         )
                     )
                 }
 
                 is DataState.Error -> setViewState(
                     viewState = getCurrentViewStateOrNew().copy(
-                        loadingState = LoadingState.Idle
-                    )
-                )
-
-                DataState.Loading -> setViewState(
-                    viewState = getCurrentViewStateOrNew().copy(
-                        loadingState = LoadingState.Loading
+                        homeState = HomeViewState.HomeState.Error(errorMessage = dataState.errorMessage)
                     )
                 )
             }
-        } .launchIn(viewModelScope)
+        }.launchIn(viewModelScope)
     }
 
 }

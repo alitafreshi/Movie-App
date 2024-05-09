@@ -16,7 +16,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tafreshiali.presentation.components.HomeImageSliderComponent
 import com.tafreshiali.presentation.components.HomeMainImageSliderComponent
 import com.tafreshiali.presentation.components.RecommendedMovieSectionComponent
 import com.tafreshiali.ui_kit.BaseScreenContainer
@@ -54,7 +53,6 @@ fun HomeScreen(
             }
         }
     ) { paddingValues ->
-
         LazyColumn(modifier = modifier, contentPadding = paddingValues) {
             item {
                 HomeMainImageSliderComponent(imageUrls = homeViewState.trendingMovies.take(4))
@@ -62,12 +60,6 @@ fun HomeScreen(
             item {
                 RecommendedMovieSectionComponent(movieList = homeViewState.trendingMovies)
             }
-
-            /*item {
-                HomeImageSliderComponent(
-                    imageUrls = homeViewState.trendingMovies
-                )
-            }*/
         }
     }
 }

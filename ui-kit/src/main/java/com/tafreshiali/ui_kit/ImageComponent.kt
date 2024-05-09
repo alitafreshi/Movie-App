@@ -181,7 +181,7 @@ private fun ImagePreviewLoadingState(modifier: Modifier = Modifier) {
         modifier = modifier.then(
             Modifier
                 .fillMaxSize()
-                .background(color = grayscale10ContainerLight)
+                .background(color = AppTheme.colorScheme.shimmerLoadingColor)
                 .shimmerEffect()
         )
     )

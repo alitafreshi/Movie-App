@@ -26,7 +26,8 @@ private val LightColorScheme = AppColorScheme(
     onSuccess = onSuccessLight,
     warning = warningLight,
     onWarning = onWarningLight,
-    statusBar = statusBarColor
+    statusBar = statusBarColor,
+    shimmerLoadingColor = grayscale10ContainerLight
 )
 
 private val typography = AppTypography(
