@@ -3,6 +3,7 @@ package com.tafreshiali.presentation
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -34,33 +35,35 @@ class HomeFragment : Fragment() {
     ) = ComposeView(context = requireContext()).apply {
         setContent {
             val homeViewState = homeViewModel.viewState.collectAsState().value
-            when (homeViewState.homeState) {
-                is HomeViewState.HomeState.Idle -> HomeScreen(
-                    homeViewState = homeViewState,
-                    homeEvents = homeViewModel::onTriggerEvent
-                )
-
-                is HomeViewState.HomeState.Loading -> HomeScreenLoadingComponent()
-
-                is HomeViewState.HomeState.Error ->
-                    ErrorScreenComponent(
-                        errorScreenComponentType = ErrorScreenComponentType.RetryAble(
-                            title = "Sorry, we can’t find movies :’(",
-                            button = {
-                                Button(
-                                    onClick = { homeViewModel.onTriggerEvent(HomeEvents.OnRetryClick) },
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.5f)
-                                        .padding(vertical = 16.dp, horizontal = 20.dp)
-                                ) {
-                                    Text(
-                                        text = "Retry",
-                                        style = AppTheme.typography.bodySmallBold
-                                    )
-                                }
-                            }
-                        )
+            Crossfade(targetState = homeViewState.homeState, label = "") { state ->
+                when (state) {
+                    is HomeViewState.HomeState.Idle -> HomeScreen(
+                        homeViewState = homeViewState,
+                        homeEvents = homeViewModel::onTriggerEvent
                     )
+
+                    is HomeViewState.HomeState.Loading -> HomeScreenLoadingComponent()
+
+                    is HomeViewState.HomeState.Error ->
+                        ErrorScreenComponent(
+                            errorScreenComponentType = ErrorScreenComponentType.RetryAble(
+                                title = "Sorry, we can’t find movies :’(",
+                                button = {
+                                    Button(
+                                        onClick = { homeViewModel.onTriggerEvent(HomeEvents.OnRetryClick) },
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.5f)
+                                            .padding(vertical = 16.dp, horizontal = 20.dp)
+                                    ) {
+                                        Text(
+                                            text = "Retry",
+                                            style = AppTheme.typography.bodySmallBold
+                                        )
+                                    }
+                                }
+                            )
+                        )
+                }
             }
         }
     }

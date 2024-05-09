@@ -23,9 +23,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tafreshiali.presentation.components.MovieItemShimmerComponent
 import com.tafreshiali.ui_kit.BaseScreenContainer
 import com.tafreshiali.ui_kit.MovieCategoryHeaderShimmerComponent
+import com.tafreshiali.ui_kit.VerticalMovieItemShimmerComponent
 import com.tafreshiali.ui_kit.animations.shimmerEffect
 import com.tafreshiali.ui_kit.design_system.ui.theme.grayscale10ContainerLight
 
@@ -140,7 +140,22 @@ fun HomeScreenLoadingComponent(modifier: Modifier = Modifier) {
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         items(15) {
-                            MovieItemShimmerComponent()
+                            VerticalMovieItemShimmerComponent()
+                        }
+                    }
+                }
+            }
+
+            item {
+                Column(Modifier.padding(top = 24.dp)) {
+                    MovieCategoryHeaderShimmerComponent()
+
+                    LazyRow(
+                        contentPadding = PaddingValues(horizontal = 20.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        items(15) {
+                            VerticalMovieItemShimmerComponent()
                         }
                     }
                 }

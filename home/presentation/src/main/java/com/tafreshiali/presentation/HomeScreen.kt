@@ -2,6 +2,7 @@ package com.tafreshiali.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tafreshiali.presentation.components.HomeMainImageSliderComponent
 import com.tafreshiali.presentation.components.RecommendedMovieSectionComponent
+import com.tafreshiali.presentation.components.TopRatedMovieSectionComponent
 import com.tafreshiali.ui_kit.BaseScreenContainer
 import com.tafreshiali.ui_kit.UserProfileContainer
 import com.tafreshiali.ui_kit.R as uiKitRes
@@ -53,12 +55,23 @@ fun HomeScreen(
             }
         }
     ) { paddingValues ->
-        LazyColumn(modifier = modifier, contentPadding = paddingValues) {
+        LazyColumn(
+            modifier = modifier,
+            contentPadding = PaddingValues(
+                top = paddingValues.calculateTopPadding(),
+                bottom = paddingValues.calculateBottomPadding() + 20.dp
+            )
+        ) {
             item {
                 HomeMainImageSliderComponent(imageUrls = homeViewState.trendingMovies.take(4))
             }
+
             item {
-                RecommendedMovieSectionComponent(movieList = homeViewState.trendingMovies)
+                RecommendedMovieSectionComponent(recommendedMovies = homeViewState.trendingMovies)
+            }
+
+            item {
+                TopRatedMovieSectionComponent(topRatedMovies = homeViewState.topRatedMovies)
             }
         }
     }

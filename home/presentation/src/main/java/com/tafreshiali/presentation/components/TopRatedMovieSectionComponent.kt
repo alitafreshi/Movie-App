@@ -15,17 +15,17 @@ import com.tafreshiali.ui_kit.MovieCategoryHeaderComponent
 import com.tafreshiali.ui_kit.VerticalMovieItemComponent
 
 @Composable
-fun RecommendedMovieSectionComponent(
+fun TopRatedMovieSectionComponent(
     modifier: Modifier = Modifier,
-    recommendedMovies: List<MovieIntroItem>
+    topRatedMovies: List<MovieIntroItem>
 ) {
     Column(modifier = modifier.padding(top = 24.dp)) {
-        MovieCategoryHeaderComponent(categoryTitle = "Recommended for you")
+        MovieCategoryHeaderComponent(categoryTitle = "Top Rated")
         LazyRow(
             contentPadding = PaddingValues(horizontal = 20.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(recommendedMovies, key = {
+            items(topRatedMovies, key = {
                 it.id
             }) { movieItem ->
                 VerticalMovieItemComponent(
@@ -37,7 +37,3 @@ fun RecommendedMovieSectionComponent(
         }
     }
 }
-
-
-
-
