@@ -10,12 +10,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tafreshiali.ui_kit.design_system.ui.theme.AppTheme
+import com.tafreshiali.ui_kit.design_system.ui.theme.primaryLight
 
 @Composable
 fun BottomBarComponent(modifier: Modifier = Modifier) {
@@ -39,21 +45,59 @@ fun BottomBarComponent(modifier: Modifier = Modifier) {
             .shadow(1.dp)
             .drawWithCache {
                 val sectionWidth = (size.width / 4)
-                val centerOfEachSection = sectionWidth / 2
                 val sectionHeight = size.height / 2
-
-                val centerX1 = centerOfEachSection
-                val centerX2 = centerOfEachSection * 2
-                val centerX3 = centerOfEachSection * 3
-                val centerX4 = centerOfEachSection * 4
-
-
+                val centerOfEachSection = sectionWidth / 2
 
                 onDrawBehind {
 
+                   /* drawRect(
+                        color = Color.Black,
+                        topLeft = Offset(
+                            x = 0f,
+                            y = sectionHeight - homeIcon.intrinsicSize.height / 2
+                        ),
+                        size = Size(sectionWidth, sectionHeight - homeIcon.intrinsicSize.height / 2)
+                    )
+
+                    drawRect(
+                        color = Color.Blue,
+                        topLeft = Offset(
+                            x = sectionWidth,
+                            y = sectionHeight - searchIcon.intrinsicSize.height / 2
+                        ),
+                        size = Size(
+                            sectionWidth,
+                            sectionHeight - searchIcon.intrinsicSize.height / 2
+                        )
+                    )
+
+                    drawRect(
+                        color = Color.Red,
+                        topLeft = Offset(
+                            x = sectionWidth * 2,
+                            y = sectionHeight - searchIcon.intrinsicSize.height / 2
+                        ),
+                        size = Size(
+                            sectionWidth,
+                            sectionHeight - searchIcon.intrinsicSize.height / 2
+                        )
+                    )
+
+                    drawRect(
+                        color = Color.Green,
+                        topLeft = Offset(
+                            x = sectionWidth * 3,
+                            y = sectionHeight - searchIcon.intrinsicSize.height / 2
+                        ),
+                        size = Size(
+                            sectionWidth,
+                            sectionHeight - searchIcon.intrinsicSize.height / 2
+                        )
+                    )*/
+
                     //HOME ICON
                     translate(
-                        centerX1 - (homeIcon.intrinsicSize.width / 2),
+                        centerOfEachSection - (homeIcon.intrinsicSize.width / 2),
                         sectionHeight - homeIcon.intrinsicSize.height / 2
                     ) {
                         with(homeIcon) {
@@ -61,9 +105,24 @@ fun BottomBarComponent(modifier: Modifier = Modifier) {
                         }
                     }
 
+                    drawLine(
+                        color = primaryLight,
+                        start = Offset(
+                            centerOfEachSection - (homeIcon.intrinsicSize.width / 2),
+                            (homeIcon.intrinsicSize.width * 2) + 6.dp.toPx()
+                        ),
+                        end = Offset(
+                            centerOfEachSection - (homeIcon.intrinsicSize.width / 2) + homeIcon.intrinsicSize.width,
+                            (homeIcon.intrinsicSize.width * 2) + 6.dp.toPx()
+                        ),
+                        strokeWidth = 2.dp.toPx(),
+                        cap = StrokeCap.Round
+                    )
+
+
                     //SEARCH ICON
                     translate(
-                        centerX2 - (searchIcon.intrinsicSize.width / 2),
+                        (sectionWidth + centerOfEachSection) - (searchIcon.intrinsicSize.width / 2),
                         sectionHeight - searchIcon.intrinsicSize.height / 2
                     ) {
                         with(searchIcon) {
@@ -71,9 +130,23 @@ fun BottomBarComponent(modifier: Modifier = Modifier) {
                         }
                     }
 
+                    drawLine(
+                        color = primaryLight,
+                        start = Offset(
+                            (sectionWidth + centerOfEachSection) - (searchIcon.intrinsicSize.width / 2),
+                            (homeIcon.intrinsicSize.width * 2) + 6.dp.toPx()
+                        ),
+                        end = Offset(
+                            (sectionWidth + centerOfEachSection) - (searchIcon.intrinsicSize.width / 2) +searchIcon.intrinsicSize.width ,
+                            (homeIcon.intrinsicSize.width * 2) + 6.dp.toPx()
+                        ),
+                        strokeWidth = 2.dp.toPx(),
+                        cap = StrokeCap.Round
+                    )
+
                     //DOWNLOAD ICON
                     translate(
-                        centerX3 - (downloadIcon.intrinsicSize.width / 2),
+                        (sectionWidth * 2 + centerOfEachSection) - (downloadIcon.intrinsicSize.width / 2),
                         sectionHeight - downloadIcon.intrinsicSize.height / 2
                     ) {
                         with(downloadIcon) {
@@ -83,7 +156,7 @@ fun BottomBarComponent(modifier: Modifier = Modifier) {
 
                     //PROFILE ICON
                     translate(
-                        centerX4 - (profileIcon.intrinsicSize.width / 2),
+                        (sectionWidth * 3 + centerOfEachSection) - (profileIcon.intrinsicSize.width / 2),
                         sectionHeight - profileIcon.intrinsicSize.height / 2
                     ) {
                         with(profileIcon) {
