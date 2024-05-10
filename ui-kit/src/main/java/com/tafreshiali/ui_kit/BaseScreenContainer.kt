@@ -12,12 +12,14 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 @Composable
 fun BaseScreenContainer(
     topAppBar: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {},
     screenContent: @Composable (contentPaddingValues: PaddingValues) -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = topAppBar
+        topBar = topAppBar,
+        bottomBar = bottomBar
     ) { paddingValues ->
         screenContent(paddingValues)
     }
