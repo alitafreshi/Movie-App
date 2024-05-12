@@ -1,5 +1,6 @@
 package com.tafreshiali.presentation
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,7 +14,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,7 +24,11 @@ import com.tafreshiali.presentation.components.HomeMainImageSliderComponent
 import com.tafreshiali.presentation.components.RecommendedMovieSectionComponent
 import com.tafreshiali.presentation.components.TopRatedMovieSectionComponent
 import com.tafreshiali.ui_kit.BaseScreenContainer
+import com.tafreshiali.ui_kit.BottomBarComponent
+import com.tafreshiali.ui_kit.BottomNavItem
+import com.tafreshiali.ui_kit.R
 import com.tafreshiali.ui_kit.UserProfileContainer
+import com.tafreshiali.ui_kit.design_system.ui.theme.primaryLight
 import com.tafreshiali.ui_kit.R as uiKitRes
 
 @ExperimentalMaterial3Api
@@ -53,6 +60,43 @@ fun HomeScreen(
                     )
                 }
             }
+        },
+        bottomBar = {
+            BottomBarComponent(
+                items = listOf(
+                    BottomNavItem(
+                        deeplink = "HomeIcon",
+                        icon = rememberVectorPainter(image = ImageVector.vectorResource(id = R.drawable.ic_home_navigation)),
+                        isSelected = true,
+                        selectedColor = primaryLight,
+                        unSelectedColor = Color.Gray
+                    ),
+                    BottomNavItem(
+                        deeplink = "SearchIcon",
+                        icon = rememberVectorPainter(image = ImageVector.vectorResource(id = R.drawable.ic_search_navigation)),
+                        isSelected = false,
+                        selectedColor = primaryLight,
+                        unSelectedColor = Color.Gray
+                    ),
+                    BottomNavItem(
+                        deeplink = "DownloadIcon",
+                        icon = rememberVectorPainter(image = ImageVector.vectorResource(id = R.drawable.ic_download_navigation)),
+                        isSelected = false,
+                        selectedColor = primaryLight,
+                        unSelectedColor = Color.Gray
+                    ),
+                    BottomNavItem(
+                        deeplink = "ProfileIcon",
+                        icon = rememberVectorPainter(image = ImageVector.vectorResource(id = R.drawable.ic_profile_navigation)),
+                        isSelected = false,
+                        selectedColor = primaryLight,
+                        unSelectedColor = Color.Gray
+                    )
+                ),
+                onItemSelected = { selectedBottomNavItem ->
+                    Log.d("BottomBarComponent", "Selected NavItem Is :$selectedBottomNavItem")
+                }
+            )
         }
     ) { paddingValues ->
         LazyColumn(
