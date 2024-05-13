@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -46,6 +47,7 @@ class HomeFragment : Fragment() {
 
                     is HomeViewState.HomeState.Error ->
                         ErrorScreenComponent(
+                            modifier = Modifier.fillMaxSize(),
                             errorScreenComponentType = ErrorScreenComponentType.RetryAble(
                                 title = "Sorry, we can’t find movies :’(",
                                 button = {
