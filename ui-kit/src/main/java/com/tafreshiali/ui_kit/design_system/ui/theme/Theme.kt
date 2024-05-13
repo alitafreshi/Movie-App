@@ -31,6 +31,114 @@ private val LightColorScheme = AppColorScheme(
 )
 
 private val typography = AppTypography(
+    h1Bold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 48.sp,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 56.sp
+    ),
+    h2Bold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 40.sp,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 18.sp
+    ),
+    h3Bold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 32.sp,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 40.sp
+    ),
+    h4Bold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 32.sp
+    ),
+    h5Bold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 28.sp
+    ),
+    h6Bold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 26.sp
+    ),
+    h1SemiBold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 48.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 56.sp
+    ),
+    h2SemiBold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 40.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 18.sp
+    ),
+    h3SemiBold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 32.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 40.sp
+    ),
+    h4SemiBold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 32.sp
+    ),
+    h5SemiBold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 28.sp
+    ),
+    h6SemiBold = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 18.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 26.sp
+    ),
+    h1Medium = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 48.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 56.sp
+    ),
+    h2Medium = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 40.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 18.sp
+    ),
+    h3Medium = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 32.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 40.sp
+    ),
+    h4Medium = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 32.sp
+    ),
+    h5Medium = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 28.sp
+    ),
+    h6Medium = TextStyle(
+        fontFamily = Mulish,
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 26.sp
+    ),
     bodyExtraLargeBold = TextStyle(
         fontFamily = Mulish,
         fontSize = 18.sp,
