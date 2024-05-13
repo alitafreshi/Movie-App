@@ -50,7 +50,7 @@ fun HomeMainImageSliderComponent(
 
     val pagerState = rememberPagerState(pageCount = { imageUrls.size })
     Column(
-        modifier = modifier.padding(top = 24.dp),
+        modifier = modifier.padding(top = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         HorizontalPager(

@@ -2,6 +2,7 @@ package com.tafreshiali.presentation
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -28,6 +29,7 @@ import com.tafreshiali.ui_kit.BottomBarComponent
 import com.tafreshiali.ui_kit.BottomNavItem
 import com.tafreshiali.ui_kit.R
 import com.tafreshiali.ui_kit.UserProfileContainer
+import com.tafreshiali.ui_kit.design_system.ui.theme.AppTheme
 import com.tafreshiali.ui_kit.design_system.ui.theme.primaryLight
 import com.tafreshiali.ui_kit.R as uiKitRes
 
@@ -43,7 +45,8 @@ fun HomeScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 24.dp, end = 24.dp, top = 16.dp),
+                    .background(color = AppTheme.colorScheme.onPrimary)
+                    .padding(horizontal = 20.dp, vertical = 16.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
