@@ -38,6 +38,9 @@ dependencies {
     //Hilt - CORE
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    //PAGER-INDICATOR
+    api(libs.pager.indicator)
 }
 kapt {
     correctErrorTypes = true
