@@ -1,12 +1,9 @@
 package com.tafreshiali.presentation
 
 import com.google.common.truth.Truth.assertThat
-import com.tafreshiali.app_state_manager.LoadingState
 import com.tafreshiali.common.MainDispatcherRule
 import com.tafreshiali.data_state.DataState
 import com.tafreshiali.domain.interactors.GetHomeMoviesUseCase
-import com.tafreshiali.domain.interactors.GetTrendingMoviesUseCase
-import com.tafreshiali.domain.model.intro.BaseMovieIntro
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit4.MockKRule
