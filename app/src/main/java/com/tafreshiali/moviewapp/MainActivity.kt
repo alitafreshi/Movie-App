@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                 )*/
                 val appState = appViewModel.viewState.collectAsState()
                 Column(modifier = Modifier.fillMaxSize()) {
-                    Text(
+                    /*Text(
                         modifier = Modifier
                             .fillMaxSize()
                             .clickable {
@@ -91,11 +91,11 @@ class MainActivity : AppCompatActivity() {
                             },
                         text = appState.value.fcmToken,
                         style = MaterialTheme.typography.titleLarge.copy(color = Color.Black)
-                    )
-                    /* AndroidViewBinding(
+                    )*/
+                     AndroidViewBinding(
                          factory = FragmentContainerLayoutBinding::inflate,
                          modifier = Modifier.fillMaxSize()
-                     )*/
+                     )
                 }
             }
         }
