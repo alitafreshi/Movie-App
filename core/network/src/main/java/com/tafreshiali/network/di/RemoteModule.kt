@@ -6,14 +6,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.serialization.gson.gson
 import io.ktor.util.appendIfNameAbsent
-import io.ktor.util.appendIfNameAndValueAbsent
-import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Singleton
 
 @Module
@@ -21,32 +19,27 @@ import javax.inject.Singleton
 object RemoteModule {
     @Singleton
     @Provides
-    fun provideKtorClient(): HttpClient = HttpClient(OkHttp) {
-        install(ContentNegotiation) {
-            gson(block = {
-                setPrettyPrinting()
-                enableComplexMapKeySerialization()
-                disableHtmlEscaping()
-            })
-        }
+    fun provideKtorClient(appHttpClientEngine: HttpClientEngine): HttpClient =
+        HttpClient(appHttpClientEngine) {
+            install(ContentNegotiation) {
+                gson(block = {
+                    setPrettyPrinting()
+                    enableComplexMapKeySerialization()
+                    disableHtmlEscaping()
+                })
+            }
 
-        install(HttpTimeout) {
-            requestTimeoutMillis = 100000
-        }
+            install(HttpTimeout) {
+                requestTimeoutMillis = 100000
+            }
 
-        defaultRequest {
-            url(APP_BASE_URL)
-            headers.appendIfNameAbsent(name = "accept", value =  "application/json")
-            headers.appendIfNameAbsent(name = "Authorization", value =  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2Q1YzlhYjM3MGI0NmRhN2QyN2VjZTE0NWM5OTI4OCIsInN1YiI6IjVkM2Q0ZTU0YTFkMzMyMDAxMjBlMzRiOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Y5gnfKbUBEESHBPWNVTFTPtC8TBIPv31B75Xr1XGRyQ")
-        }
-
-        engine {
-            val loggingInterceptor = HttpLoggingInterceptor()
-            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            addInterceptor(loggingInterceptor)
-            config {
-                followRedirects(true)
+            defaultRequest {
+                url(APP_BASE_URL)
+                headers.appendIfNameAbsent(name = "accept", value = "application/json")
+                headers.appendIfNameAbsent(
+                    name = "Authorization",
+                    value = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Y2Q1YzlhYjM3MGI0NmRhN2QyN2VjZTE0NWM5OTI4OCIsInN1YiI6IjVkM2Q0ZTU0YTFkMzMyMDAxMjBlMzRiOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Y5gnfKbUBEESHBPWNVTFTPtC8TBIPv31B75Xr1XGRyQ"
+                )
             }
         }
-    }
 }

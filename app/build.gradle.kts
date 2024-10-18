@@ -115,6 +115,12 @@ dependencies {
     //JETPACK-NAVIGATION
     implementation(libs.bundles.jetpack.navigation)
 
+    //CHUCKER
+    debugImplementation(libs.chucker)
+
+    //Ktor-HttpClient
+    implementation(libs.ktor.client.okhttp)
+
     //FIREBASE MODULE
     implementation(projects.core.firebase)
 
